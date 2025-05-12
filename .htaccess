@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Handle blog post URLs
+RewriteRule ^blog/([^/]+)/?$ blog-post.html [L]
+
+# Prevent direct access to the blog-post.html file
+RewriteCond %{THE_REQUEST} /blog-post\.html [NC]
+RewriteRule ^ - [F]

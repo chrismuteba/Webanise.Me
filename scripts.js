@@ -467,12 +467,12 @@ function setupScrollToTop() {
     }
 }
 
-// Blog functionality with Contentful integration
+// Blog functionality with Contentful integration - SIMPLIFIED VERSION
 function setupBlog() {
     const blogPostsContainer = document.getElementById('blog-posts');
     const loadMoreButton = document.getElementById('load-more-posts');
     let currentPage = 1;
-    const postsPerPage = 3;
+    const postsPerPage = 10; // Show more posts at once
     
     // Function to fetch blog posts from Contentful
     async function fetchBlogPosts(page = 1) {
@@ -484,8 +484,8 @@ function setupBlog() {
             const environmentId = 'master';
             
             const skip = (page - 1) * postsPerPage;
-            // Ensure these fields are requested as specified in the requirements
-            const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&limit=${postsPerPage}&skip=${skip}&order=-sys.createdAt&select=fields.title,fields.excerpt,fields.slug,fields.featuredImage,fields.category,sys.createdAt`;
+            // Ensure these fields are requested as specified in the requirements - now including content field
+            const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&limit=${postsPerPage}&skip=${skip}&order=-sys.createdAt`;
             
             console.log('Fetching blog posts from URL:', url);
             
@@ -548,7 +548,7 @@ function setupBlog() {
                 day: 'numeric'
             });
             
-            // Generate post HTML
+            // Generate post HTML - now showing full content directly
             postElement.innerHTML = `
                 <div class="relative">
                     ${featuredImage ?
@@ -563,11 +563,12 @@ function setupBlog() {
                 </div>
                 <div class="p-6">
                     <div class="text-sm text-gray-500 mb-2">${formattedDate}</div>
-                    <h3 class="text-xl font-bold text-secondary mb-3 hover:text-primary transition-colors">
+                    <h3 class="text-xl font-bold text-secondary mb-3">
                         ${post.fields.title}
                     </h3>
-                    <p class="text-gray-600 mb-4">${post.fields.excerpt || post.fields.content.substring(0, 120) + '...'}</p>
-                    <a href="./blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
+                    <div class="text-gray-600 mb-4 prose max-w-none">
+                        ${post.fields.content || post.fields.excerpt || 'No content available'}
+                    </div>
                 </div>
             `;
             
@@ -581,73 +582,7 @@ function setupBlog() {
         setupScrollAnimations();
     }
     
-    // Function to show blog post modal
-    function showBlogPostModal(post, featuredImage) {
-        // Create modal overlay
-        const modalOverlay = document.createElement('div');
-        modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4';
-        
-        // Create modal content
-        const modalContent = document.createElement('div');
-        modalContent.className = 'bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto';
-        
-        // Format date
-        const date = new Date(post.sys.createdAt);
-        const formattedDate = date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        // Set modal HTML
-        modalContent.innerHTML = `
-            <div class="relative">
-                ${featuredImage ?
-                    `<img src="${featuredImage.fields.file.url}" alt="${post.fields.title}" class="w-full h-64 object-cover">` :
-                    `<div class="w-full h-64 bg-gray-200"></div>`
-                }
-                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors" id="close-modal">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="p-8">
-                <div class="flex items-center mb-4">
-                    <span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded mr-3">
-                        ${post.fields.category || 'General'}
-                    </span>
-                    <span class="text-sm text-gray-500">${formattedDate}</span>
-                </div>
-                <h2 class="text-3xl font-bold text-secondary mb-6">${post.fields.title}</h2>
-                <div class="prose max-w-none text-gray-700">
-                    ${post.fields.content}
-                </div>
-            </div>
-        `;
-        
-        // Add modal to page
-        modalOverlay.appendChild(modalContent);
-        document.body.appendChild(modalOverlay);
-        
-        // Prevent body scrolling
-        document.body.style.overflow = 'hidden';
-        
-        // Add close functionality
-        const closeButton = modalOverlay.querySelector('#close-modal');
-        closeButton.addEventListener('click', function() {
-            document.body.removeChild(modalOverlay);
-            document.body.style.overflow = '';
-        });
-        
-        // Close on overlay click
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                document.body.removeChild(modalOverlay);
-                document.body.style.overflow = '';
-            }
-        });
-    }
+    // We're now showing full content directly on the page, so no modal needed
     
     // Load initial blog posts
     async function loadBlogPosts(page = 1) {

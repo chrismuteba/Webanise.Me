@@ -1,4 +1,81 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Debug information
+    console.log('Base URL:', window.location.href);
+    console.log('Path:', window.location.pathname);
+    console.log('Origin:', window.location.origin);
+    
+    // Test Contentful API access
+    const testContentfulAccess = async () => {
+        try {
+            const spaceId = '7rdix4olosoz';
+            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const url = `https://cdn.contentful.com/spaces/${spaceId}?access_token=${accessToken}`;
+            
+            console.log('Testing Contentful API access...');
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            console.log('Contentful API accessible:', response.ok);
+            console.log('Space name:', data.name);
+            return response.ok;
+        } catch (error) {
+            console.error('Error accessing Contentful API:', error);
+            return false;
+        }
+    };
+    
+    testContentfulAccess();
+    
+    // Test content types
+    const testContentTypes = async () => {
+        try {
+            const spaceId = '7rdix4olosoz';
+            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const url = `https://cdn.contentful.com/spaces/${spaceId}/content_types?access_token=${accessToken}`;
+            
+            console.log('Fetching content types...');
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            console.log('Content types accessible:', response.ok);
+            if (response.ok && data.items) {
+                console.log('Available content types:');
+                data.items.forEach(type => {
+                    console.log(`- ${type.sys.id}: ${type.name}`);
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching content types:', error);
+        }
+    };
+    
+    testContentTypes();
+    
+    // Test for any entries
+    const testEntries = async () => {
+        try {
+            const spaceId = '7rdix4olosoz';
+            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}`;
+            
+            console.log('Fetching all entries...');
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            console.log('Entries accessible:', response.ok);
+            if (response.ok && data.items) {
+                console.log('Total entries found:', data.items.length);
+                if (data.items.length > 0) {
+                    console.log('First entry content type:', data.items[0].sys.contentType.sys.id);
+                    console.log('First entry fields:', Object.keys(data.items[0].fields));
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching entries:', error);
+        }
+    };
+    
+    testEntries();
     // Update copyright year automatically
     const copyrightYearElement = document.getElementById('copyright-year');
     if (copyrightYearElement) {
@@ -409,16 +486,21 @@ function setupBlog() {
             // Ensure these fields are requested as specified in the requirements
             const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=${contentTypeId}&limit=${postsPerPage}&skip=${skip}&order=-sys.createdAt&select=fields.title,fields.excerpt,fields.slug,fields.featuredImage,fields.category,sys.createdAt`;
             
+            console.log('Fetching blog posts from URL:', url);
+            
             const response = await fetch(url);
+            console.log('Response status:', response.status);
             
             if (!response.ok) {
-                throw new Error('Failed to fetch blog posts');
+                throw new Error(`Failed to fetch blog posts: ${response.status} ${response.statusText}`);
             }
             
             const data = await response.json();
+            console.log('Data received:', data ? 'Yes' : 'No');
             return data;
         } catch (error) {
             console.error('Error fetching blog posts:', error);
+            console.log('Error details:', error.message);
             return null;
         }
     }
@@ -484,7 +566,7 @@ function setupBlog() {
                         ${post.fields.title}
                     </h3>
                     <p class="text-gray-600 mb-4">${post.fields.excerpt || post.fields.content.substring(0, 120) + '...'}</p>
-                    <a href="blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
+                    <a href="./blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
                 </div>
             `;
             
@@ -568,11 +650,21 @@ function setupBlog() {
     
     // Load initial blog posts
     async function loadBlogPosts(page = 1) {
+        console.log('Fetching blog posts, page:', page);
         const data = await fetchBlogPosts(page);
+        
+        console.log('Blog data received:', data ? 'Yes' : 'No');
         
         if (data) {
             const posts = data.items;
+            console.log('Number of posts received:', posts?.length);
+            if (posts && posts.length > 0) {
+                console.log('First post title:', posts[0].fields?.title);
+                console.log('First post slug:', posts[0].fields?.slug);
+            }
+            
             const assets = data.includes?.Asset || [];
+            console.log('Number of assets received:', assets.length);
             
             renderBlogPosts(posts, assets);
             

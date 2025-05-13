@@ -14,6 +14,35 @@
     <!-- Custom Tailwind colors are defined in styles.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Toast notification styles */
+        #toast-container {
+            transition: all 0.3s ease;
+        }
+        #toast-container > div {
+            transition: all 0.3s ease;
+        }
+        .translate-y-0 {
+            transform: translateY(0);
+        }
+        .translate-y-2 {
+            transform: translateY(8px);
+        }
+        .opacity-0 {
+            opacity: 0;
+        }
+        .opacity-100 {
+            opacity: 1;
+        }
+        /* Social share button hover effects */
+        .social-share-buttons button {
+            transition: all 0.2s ease;
+        }
+        .social-share-buttons button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body class="font-sans antialiased text-gray-800">
     <!-- Navigation -->
@@ -83,8 +112,34 @@
                     </div>
                 </div>
                 <div class="p-8">
-                    <div class="flex items-center mb-4">
-                        <span class="text-sm text-gray-500" id="post-date">Date</span>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                        <span class="text-sm text-gray-500 mb-2 sm:mb-0" id="post-date">Date</span>
+                        <div class="social-share-buttons flex flex-wrap items-center">
+                            <div class="flex items-center mr-2 mb-2 sm:mb-0">
+                                <span class="text-sm text-gray-500 mr-1">Share:</span>
+                                <span id="total-share-count" class="hidden inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-primary rounded-full"></span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="share-facebook w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors transform hover:scale-110" aria-label="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-twitter w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center hover:bg-sky-600 transition-colors transform hover:scale-110" aria-label="Share on Twitter/X">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="share-linkedin w-8 h-8 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition-colors transform hover:scale-110" aria-label="Share on LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="share-whatsapp w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors transform hover:scale-110" aria-label="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="share-email w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center hover:bg-gray-700 transition-colors transform hover:scale-110" aria-label="Share via Email">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                                <button class="share-copy w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center hover:bg-purple-700 transition-colors transform hover:scale-110" aria-label="Copy Link">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <h1 class="text-3xl font-bold text-secondary mb-6" id="post-title">Blog Post Title</h1>
                     <div class="prose max-w-none text-gray-700" id="post-content">

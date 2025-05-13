@@ -56,6 +56,9 @@ async function loadBlogPost(slug) {
         // Render the blog post
         renderBlogPost(post);
         
+        // Setup social sharing buttons
+        setupSocialSharing(post);
+        
         // Load related posts
         loadRelatedPosts(post);
         
@@ -296,6 +299,209 @@ function updateMetaTags(post) {
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink && metaSlug) {
         canonicalLink.setAttribute('href', `https://webanise.me/blog-post.html?slug=${metaSlug}`);
+    }
+}
+
+// Function to get share counts from local storage
+function getShareCounts(postSlug) {
+    const countsString = localStorage.getItem(`share_counts_${postSlug}`);
+    if (countsString) {
+        return JSON.parse(countsString);
+    }
+    return {
+        facebook: 0,
+        twitter: 0,
+        linkedin: 0,
+        whatsapp: 0,
+        email: 0,
+        copy: 0,
+        total: 0
+    };
+}
+
+// Function to save share counts to local storage
+function saveShareCount(postSlug, platform) {
+    const counts = getShareCounts(postSlug);
+    counts[platform]++;
+    counts.total++;
+    localStorage.setItem(`share_counts_${postSlug}`, JSON.stringify(counts));
+    return counts;
+}
+
+// Function to update share count display
+function updateShareCountDisplay(postSlug) {
+    const counts = getShareCounts(postSlug);
+    const totalCountElement = document.getElementById('total-share-count');
+    if (totalCountElement) {
+        totalCountElement.textContent = counts.total > 0 ? counts.total : '';
+        
+        // Only show the badge if there are shares
+        if (counts.total > 0) {
+            totalCountElement.classList.remove('hidden');
+        } else {
+            totalCountElement.classList.add('hidden');
+        }
+    }
+}
+
+// Function to create and show a toast notification
+function showToast(message, type = 'success') {
+    // Create toast container if it doesn't exist
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'fixed bottom-4 right-4 z-50';
+        document.body.appendChild(toastContainer);
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `flex items-center p-4 mb-3 rounded-lg shadow-lg transition-all transform translate-y-0 opacity-100 ${
+        type === 'success' ? 'bg-green-500' : 'bg-red-500'
+    } text-white`;
+    
+    // Add icon based on type
+    const icon = document.createElement('i');
+    icon.className = `mr-2 ${type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'}`;
+    toast.appendChild(icon);
+    
+    // Add message
+    const messageEl = document.createElement('span');
+    messageEl.textContent = message;
+    toast.appendChild(messageEl);
+    
+    // Add to container
+    toastContainer.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.add('translate-y-0', 'opacity-100');
+    }, 10);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-2', 'opacity-0');
+        
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Function to setup social sharing buttons
+function setupSocialSharing(post) {
+    // Get the current page URL
+    const currentUrl = window.location.href;
+    
+    // Get the post title
+    const postTitle = post.fields.title;
+    
+    // Get the post excerpt for description
+    const postDescription = post.fields.excerpt || '';
+    
+    // Get the post slug for tracking shares
+    const postSlug = post.fields.slug;
+    
+    // Initialize share count display
+    updateShareCountDisplay(postSlug);
+    
+    // Setup Facebook sharing
+    const facebookBtn = document.querySelector('.share-facebook');
+    if (facebookBtn) {
+        facebookBtn.addEventListener('click', function() {
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            window.open(facebookUrl, 'facebook-share', 'width=580,height=296');
+            showToast('Sharing on Facebook');
+            saveShareCount(postSlug, 'facebook');
+            updateShareCountDisplay(postSlug);
+        });
+    }
+    
+    // Setup Twitter/X sharing
+    const twitterBtn = document.querySelector('.share-twitter');
+    if (twitterBtn) {
+        twitterBtn.addEventListener('click', function() {
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(postTitle)}&url=${encodeURIComponent(currentUrl)}`;
+            window.open(twitterUrl, 'twitter-share', 'width=550,height=235');
+            showToast('Sharing on Twitter/X');
+            saveShareCount(postSlug, 'twitter');
+            updateShareCountDisplay(postSlug);
+        });
+    }
+    
+    // Setup LinkedIn sharing
+    const linkedinBtn = document.querySelector('.share-linkedin');
+    if (linkedinBtn) {
+        linkedinBtn.addEventListener('click', function() {
+            const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+            window.open(linkedinUrl, 'linkedin-share', 'width=750,height=600');
+            showToast('Sharing on LinkedIn');
+            saveShareCount(postSlug, 'linkedin');
+            updateShareCountDisplay(postSlug);
+        });
+    }
+    
+    // Setup WhatsApp sharing
+    const whatsappBtn = document.querySelector('.share-whatsapp');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function() {
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(postTitle + ' ' + currentUrl)}`;
+            window.open(whatsappUrl, 'whatsapp-share', 'width=580,height=296');
+            showToast('Sharing on WhatsApp');
+            saveShareCount(postSlug, 'whatsapp');
+            updateShareCountDisplay(postSlug);
+        });
+    }
+    
+    // Setup Email sharing
+    const emailBtn = document.querySelector('.share-email');
+    if (emailBtn) {
+        emailBtn.addEventListener('click', function() {
+            const subject = encodeURIComponent(postTitle);
+            const body = encodeURIComponent(`Check out this article: ${postTitle}\n\n${postDescription}\n\n${currentUrl}`);
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+            showToast('Opening email client');
+            saveShareCount(postSlug, 'email');
+            updateShareCountDisplay(postSlug);
+        });
+    }
+    
+    // Setup Copy Link functionality
+    const copyBtn = document.querySelector('.share-copy');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async function() {
+            try {
+                await navigator.clipboard.writeText(currentUrl);
+                showToast('Link copied to clipboard!');
+                saveShareCount(postSlug, 'copy');
+                updateShareCountDisplay(postSlug);
+            } catch (err) {
+                // Fallback for browsers that don't support clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = currentUrl;
+                textArea.style.position = 'fixed';  // Avoid scrolling to bottom
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showToast('Link copied to clipboard!');
+                        saveShareCount(postSlug, 'copy');
+                        updateShareCountDisplay(postSlug);
+                    } else {
+                        showToast('Failed to copy link', 'error');
+                    }
+                } catch (err) {
+                    showToast('Failed to copy link', 'error');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        });
     }
 }
 

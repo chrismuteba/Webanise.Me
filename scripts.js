@@ -484,7 +484,7 @@ function setupBlog() {
                         ${post.fields.title}
                     </h3>
                     <p class="text-gray-600 mb-4">${post.fields.excerpt || post.fields.content.substring(0, 120) + '...'}</p>
-                    <a href="/blog/${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
+                    <a href="blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
                 </div>
             `;
             

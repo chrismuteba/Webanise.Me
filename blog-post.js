@@ -111,7 +111,7 @@ async function fetchBlogPostBySlug(slug) {
         
         // Add the featured image URL to the post object
         if (featuredImage) {
-            post.featuredImageUrl = featuredImage.fields.file.url;
+            post.featuredImageUrl = `https:${featuredImage.fields.file.url}`;
         }
         
         return post;
@@ -288,7 +288,8 @@ function updateMetaTags(post) {
     
     const ogImage = document.querySelector('meta[property="og:image"]');
     if (ogImage && metaImage) {
-        ogImage.setAttribute('content', `https:${metaImage}`);
+        // Don't add https: prefix again since it's already included in featuredImageUrl
+        ogImage.setAttribute('content', metaImage);
     }
     
     // Update canonical URL
@@ -370,7 +371,7 @@ function renderRelatedPosts(posts, assets) {
         postElement.innerHTML = `
             <div class="relative">
                 ${featuredImage ?
-                    `<img src="${featuredImage.fields.file.url}" alt="${post.fields.title}" class="w-full h-48 object-cover">` :
+                    `<img src="https:${featuredImage.fields.file.url}" alt="${post.fields.title}" class="w-full h-48 object-cover">` :
                     `<div class="w-full h-48 bg-gray-200 flex items-center justify-center">
                         <span class="text-gray-500">No image available</span>
                     </div>`

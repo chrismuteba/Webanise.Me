@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 // Contentful credentials
 const spaceId = '7rdix4olosoz';
 const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
-const contentTypeId = 'webaniseMe';
+const contentTypeId = 'blogPost';
 
 // Function to fetch a specific blog post by slug
 async function loadBlogPost(slug) {

@@ -302,7 +302,8 @@ function updateMetaTags(post) {
 async function loadRelatedPosts(currentPost) {
     try {
         // Fetch posts with the same category, excluding the current post
-        const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&fields.category=${currentPost.fields.category || 'General'}&limit=3&select=fields.title,fields.excerpt,fields.slug,fields.featuredImage,sys.createdAt`;
+        // Remove the select parameter which is causing the 422 error
+        const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&fields.category=${currentPost.fields.category || 'General'}&limit=3`;
         
         const response = await fetch(url);
         

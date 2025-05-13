@@ -292,7 +292,7 @@ function showError(message) {
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
             <h1 class="text-3xl font-bold text-secondary mb-4">Error</h1>
             <p class="text-xl text-gray-600 mb-6">${message}</p>
-            <a href="../index.html#blog" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300">
+            <a href="index.html#blog" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300">
                 Back to Blog
             </a>
         </div>

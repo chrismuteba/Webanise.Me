@@ -569,7 +569,7 @@ function setupBlog() {
                     <p class="text-gray-600 mb-4">
                         ${post.fields.excerpt || (post.fields.content ? post.fields.content.substring(0, 200) + '...' : 'No content available')}
                     </p>
-                    <a href="./blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
+                    <a href="blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
                 </div>
             `;
             

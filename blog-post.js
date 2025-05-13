@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
+    // Debug information
+    console.log('Blog Post Page - Base URL:', window.location.href);
+    console.log('Blog Post Page - Path:', window.location.pathname);
+    console.log('Blog Post Page - Origin:', window.location.origin);
+    console.log('Blog Post Page - Search:', window.location.search);
     // Get the current slug from the URL query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const currentSlug = urlParams.get('slug');
@@ -26,7 +31,13 @@ const contentTypeId = 'blogPost';
 // Function to fetch a specific blog post by slug
 async function loadBlogPost(slug) {
     try {
+        console.log('Attempting to load blog post with slug:', slug);
         const post = await fetchBlogPostBySlug(slug);
+        
+        console.log('Post data received:', post ? 'Yes' : 'No');
+        if (post) {
+            console.log('Post title:', post.fields?.title);
+        }
         
         if (!post) {
             showError('Blog post not found');
@@ -41,7 +52,8 @@ async function loadBlogPost(slug) {
         
     } catch (error) {
         console.error('Error loading blog post:', error);
-        showError('Failed to load blog post');
+        // Show more detailed error information
+        showError(`Failed to load blog post: ${error.message}`);
     }
 }
 
@@ -80,6 +92,9 @@ async function fetchBlogPostBySlug(slug) {
         return post;
     } catch (error) {
         console.error('Error fetching blog post:', error);
+        // Log more details about the request
+        console.log('Request URL:', `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=${contentTypeId}&fields.slug=${slug}&select=fields.title,fields.excerpt,fields.slug,fields.featuredImage,fields.content,fields.category,sys.createdAt`);
+        console.log('Slug being requested:', slug);
         return null;
     }
 }
@@ -242,7 +257,7 @@ function renderRelatedPosts(posts, assets) {
                     ${post.fields.title}
                 </h3>
                 <p class="text-gray-600 mb-4">${post.fields.excerpt || ''}</p>
-                <a href="blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">
+                <a href="./blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">
                     Read More
                 </a>
             </div>

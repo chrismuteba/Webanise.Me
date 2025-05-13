@@ -70,12 +70,12 @@ async function loadBlogPost(slug) {
 async function fetchBlogPostBySlug(slug) {
     console.log('Fetching blog post with slug:', slug);
     try {
-        // Ensure these fields are requested as specified in the requirements
+        // Use a simpler query without the select parameter
         console.log('Constructing URL with slug:', slug);
         console.log('Content type ID:', contentTypeId);
         
-        // Try without the fields.slug filter to see if we get any results
-        const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}`;
+        // Simplified URL without select parameter
+        const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&fields.slug=${slug}`;
         
         console.log('Fetching from URL:', url);
         
@@ -83,7 +83,9 @@ async function fetchBlogPostBySlug(slug) {
         console.log('Response status:', response.status);
         
         if (!response.ok) {
-            throw new Error('Failed to fetch blog post');
+            const errorText = await response.text();
+            console.log('Error response:', errorText);
+            throw new Error(`Failed to fetch blog post: ${response.status} ${response.statusText}`);
         }
         
         const data = await response.json();

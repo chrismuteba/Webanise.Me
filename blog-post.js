@@ -71,7 +71,11 @@ async function fetchBlogPostBySlug(slug) {
     console.log('Fetching blog post with slug:', slug);
     try {
         // Ensure these fields are requested as specified in the requirements
-        const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&fields.slug=${slug}&select=fields.title,fields.excerpt,fields.slug,fields.featuredImage,fields.content,fields.category,sys.createdAt`;
+        console.log('Constructing URL with slug:', slug);
+        console.log('Content type ID:', contentTypeId);
+        
+        // Try without the fields.slug filter to see if we get any results
+        const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}`;
         
         console.log('Fetching from URL:', url);
         
@@ -84,6 +88,7 @@ async function fetchBlogPostBySlug(slug) {
         
         const data = await response.json();
         console.log('Data received:', data ? 'Yes' : 'No');
+        console.log('Raw data:', JSON.stringify(data));
         
         if (!data.items || data.items.length === 0) {
             console.log('No items found in response');
@@ -91,6 +96,7 @@ async function fetchBlogPostBySlug(slug) {
         }
         
         console.log('Number of items found:', data.items.length);
+        console.log('First item fields:', data.items[0].fields);
         
         // Get the post and assets
         const post = data.items[0];

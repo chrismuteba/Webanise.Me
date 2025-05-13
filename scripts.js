@@ -566,9 +566,10 @@ function setupBlog() {
                     <h3 class="text-xl font-bold text-secondary mb-3">
                         ${post.fields.title}
                     </h3>
-                    <div class="text-gray-600 mb-4 prose max-w-none">
-                        ${post.fields.content || post.fields.excerpt || 'No content available'}
-                    </div>
+                    <p class="text-gray-600 mb-4">
+                        ${post.fields.excerpt || (post.fields.content ? post.fields.content.substring(0, 200) + '...' : 'No content available')}
+                    </p>
+                    <a href="./blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
                 </div>
             `;
             

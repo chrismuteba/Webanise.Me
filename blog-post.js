@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    // Get the current slug from the URL
-    const currentSlug = window.location.pathname.split('/').pop();
+    // Get the current slug from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentSlug = urlParams.get('slug');
     
     if (!currentSlug) {
         showError('Blog post not found');
@@ -154,7 +155,7 @@ function updateMetaTags(post) {
     // Update canonical URL
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink && metaSlug) {
-        canonicalLink.setAttribute('href', `https://webanise.me/blog/${metaSlug}`);
+        canonicalLink.setAttribute('href', `https://webanise.me/blog-post.html?slug=${metaSlug}`);
     }
 }
 
@@ -241,7 +242,7 @@ function renderRelatedPosts(posts, assets) {
                     ${post.fields.title}
                 </h3>
                 <p class="text-gray-600 mb-4">${post.fields.excerpt || ''}</p>
-                <a href="/blog/${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">
+                <a href="blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">
                     Read More
                 </a>
             </div>

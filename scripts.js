@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const testContentfulAccess = async () => {
         try {
             const spaceId = '7rdix4olosoz';
-            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
             const url = `https://cdn.contentful.com/spaces/${spaceId}?access_token=${accessToken}`;
             
             console.log('Testing Contentful API access...');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const testContentTypes = async () => {
         try {
             const spaceId = '7rdix4olosoz';
-            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
             const url = `https://cdn.contentful.com/spaces/${spaceId}/content_types?access_token=${accessToken}`;
             
             console.log('Fetching content types...');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const testEntries = async () => {
         try {
             const spaceId = '7rdix4olosoz';
-            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
             const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}`;
             
             console.log('Fetching all entries...');
@@ -479,7 +479,7 @@ function setupBlog() {
         try {
             // Contentful credentials
             const spaceId = '7rdix4olosoz';
-            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
             const contentTypeId = 'webaniseMe'; // Updated to match the actual content type ID in Contentful
             
             const skip = (page - 1) * postsPerPage;

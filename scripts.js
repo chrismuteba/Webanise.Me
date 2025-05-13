@@ -480,7 +480,7 @@ function setupBlog() {
             // Contentful credentials
             const spaceId = '7rdix4olosoz';
             const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
-            const contentTypeId = 'blogPost'; // This should match your content type ID in Contentful
+            const contentTypeId = 'webaniseMe'; // Updated to match the actual content type ID in Contentful
             
             const skip = (page - 1) * postsPerPage;
             // Ensure these fields are requested as specified in the requirements

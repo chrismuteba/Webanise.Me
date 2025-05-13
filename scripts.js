@@ -598,6 +598,9 @@ function setupBlog() {
             if (posts && posts.length > 0) {
                 console.log('First post title:', posts[0].fields?.title);
                 console.log('First post slug:', posts[0].fields?.slug);
+                console.log('First post fields:', Object.keys(posts[0].fields));
+                console.log('First post content available:', posts[0].fields?.content ? 'Yes' : 'No');
+                console.log('First post excerpt available:', posts[0].fields?.excerpt ? 'Yes' : 'No');
             }
             
             const assets = data.includes?.Asset || [];

@@ -4,12 +4,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('Blog Post Page - Path:', window.location.pathname);
     console.log('Blog Post Page - Origin:', window.location.origin);
     console.log('Blog Post Page - Search:', window.location.search);
+    
+    // Add more detailed debugging
+    console.log('Blog Post Page - All URL Params:', new URLSearchParams(window.location.search).toString());
     // Get the current slug from the URL query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const currentSlug = urlParams.get('slug');
     
+    console.log('Extracted slug from URL:', currentSlug);
+    
     if (!currentSlug) {
-        showError('Blog post not found');
+        showError('Blog post not found - No slug parameter in URL');
         return;
     }
     
@@ -33,6 +38,9 @@ const environmentId = 'master';
 async function loadBlogPost(slug) {
     try {
         console.log('Attempting to load blog post with slug:', slug);
+        console.log('Using content type ID:', contentTypeId);
+        console.log('Using space ID:', spaceId);
+        console.log('Using environment ID:', environmentId);
         const post = await fetchBlogPostBySlug(slug);
         
         console.log('Post data received:', post ? 'Yes' : 'No');
@@ -60,21 +68,29 @@ async function loadBlogPost(slug) {
 
 // Function to fetch a blog post by slug from Contentful
 async function fetchBlogPostBySlug(slug) {
+    console.log('Fetching blog post with slug:', slug);
     try {
         // Ensure these fields are requested as specified in the requirements
         const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&fields.slug=${slug}&select=fields.title,fields.excerpt,fields.slug,fields.featuredImage,fields.content,fields.category,sys.createdAt`;
         
+        console.log('Fetching from URL:', url);
+        
         const response = await fetch(url);
+        console.log('Response status:', response.status);
         
         if (!response.ok) {
             throw new Error('Failed to fetch blog post');
         }
         
         const data = await response.json();
+        console.log('Data received:', data ? 'Yes' : 'No');
         
         if (!data.items || data.items.length === 0) {
+            console.log('No items found in response');
             return null;
         }
+        
+        console.log('Number of items found:', data.items.length);
         
         // Get the post and assets
         const post = data.items[0];

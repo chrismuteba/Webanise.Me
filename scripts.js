@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const testContentfulAccess = async () => {
         try {
             const spaceId = '7rdix4olosoz';
-            const accessToken = 'ObU4Lse8eUdBE5hAgO2s87MLWcOn4zZNUjwziS_eSzg';
+            const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
             const url = `https://cdn.contentful.com/spaces/${spaceId}?access_token=${accessToken}`;
             
             console.log('Testing Contentful API access...');
@@ -480,7 +480,7 @@ function setupBlog() {
             // Contentful credentials
             const spaceId = '7rdix4olosoz';
             const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
-            const contentTypeId = 'blogPost';
+            const contentTypeId = 'webaniseMe';
             const environmentId = 'master';
             
             const skip = (page - 1) * postsPerPage;

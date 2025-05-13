@@ -115,53 +115,202 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-secondary text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-4 gap-2">
-                        <img src="Logo.png" alt="WebaniseMe Logo" class="h-10">
-                        <span class="text-xl font-bold"><span class="text-white">WEBANISE</span><span class="text-primary">.ME</span></span>
-                    </div>
-                    <p class="text-gray-300 mb-4">Professional, affordable websites for small businesses.</p>
+    <footer class="bg-secondary text-white py-16 relative overflow-hidden">
+        <!-- Background pattern for visual interest -->
+        <div class="absolute inset-0 opacity-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                    <pattern id="footer-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="2" fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#footer-pattern)" />
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-12 relative z-10">
+                <!-- Column 1: About Us -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <a href="index.html#home" class="block mb-6 group" aria-label="Go to homepage">
+                        <div class="flex items-center gap-3">
+                            <img src="Logo.png" alt="WebaniseMe Logo" class="h-16 transition-transform duration-300 group-hover:scale-110">
+                            <h3 class="text-2xl font-bold"><span class="text-white">WEBANISE</span><span class="text-primary">.ME</span></h3>
+                        </div>
+                    </a>
+                    <p class="mb-6 text-gray-300 leading-relaxed">Empowering businesses with professional websites that drive growth and success. We create beautiful, responsive designs that help you stand out from the competition.</p>
+                    
+                    <!-- Social Media with animated icons -->
                     <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-primary transition-colors"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our Facebook page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our Twitter page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-twitter text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/webanise.me?igsh=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" class="social-icon-link" aria-label="Visit our Instagram page" target="_blank" rel="noopener">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our LinkedIn page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Additional space -->
+                    <div class="mt-6 pt-6 border-t border-white border-opacity-10">
                     </div>
                 </div>
                 
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html#home" class="text-gray-300 hover:text-primary transition-colors">Home</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-primary transition-colors">Services</a></li>
-                        <li><a href="index.html#design-process" class="text-gray-300 hover:text-primary transition-colors">Our Process</a></li>
-                        <li><a href="index.html#blog" class="text-gray-300 hover:text-primary transition-colors">Blog</a></li>
-                    </ul>
+                <!-- Column 2: Quick Links & Services -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-link text-primary mr-2"></i>
+                        <span>Quick Links</span>
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <ul class="space-y-3 mb-6">
+                            <li>
+                                <a href="index.html#home" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#services" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Services</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#design-process" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Our Process</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#our-commitment" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Our Commitment</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="index.html#blog" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#contact" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="privacy-policy.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Privacy Policy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="terms-of-service.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Terms of Service</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Additional space for future links -->
+                    <div class="mt-6 pt-6 border-t border-white border-opacity-10">
+                    </div>
                 </div>
                 
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Services</h3>
-                    <ul class="space-y-2">
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-primary transition-colors">Starter Package</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-primary transition-colors">Business Package</a></li>
-                        <li><a href="index.html#services" class="text-gray-300 hover:text-primary transition-colors">Premium Package</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
-                    <address class="not-italic">
-                        <p class="text-gray-300 mb-2">Email: <a href="mailto:info@webanise.me" class="hover:text-primary transition-colors">info@webanise.me</a></p>
-                        <p class="text-gray-300 mb-2">Phone: <a href="tel:+441234567890" class="hover:text-primary transition-colors">+44 123 456 7890</a></p>
-                    </address>
+                <!-- Column 3: Contact & Newsletter -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Contact Information -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-address-card text-primary mr-2"></i>
+                                <span>Contact Us</span>
+                            </h4>
+                            
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">United Kingdom</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">+44 20 1234 5678</p>
+                                        <p class="text-sm text-gray-400">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@webanise.me" class="text-white hover:text-primary transition duration-300">info@webanise.me</a>
+                                        <p class="text-sm text-gray-400">We respond within 24 hours</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <!-- Additional space for contact info -->
+                            <div class="mt-6"></div>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-comments text-primary mr-2"></i>
+                                <span>Get Started</span>
+                            </h4>
+                            
+                            <p class="text-gray-300 mb-4">Ready to discuss your project? We're here to help you create the perfect website for your business.</p>
+                            
+                            <!-- CTA Button -->
+                            <div class="mt-6">
+                                <a href="index.html#contact" class="block w-full bg-white text-secondary hover:bg-opacity-90 font-bold py-3 px-4 rounded-md transition duration-300 text-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary">
+                                    <span>Let's Talk About Your Project</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 WebaniseMe. All rights reserved.</p>
+            <!-- Copyright & Legal -->
+            <div class="border-t border-white border-opacity-10 mt-12 pt-8 text-center text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; <span id="copyright-year">2023</span> WEBANISE.ME. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0 flex space-x-4">
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Privacy Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Terms of Service</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

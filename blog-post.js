@@ -124,6 +124,97 @@ async function fetchBlogPostBySlug(slug) {
     }
 }
 
+// Function to render Contentful Rich Text format to HTML
+function renderRichText(richText) {
+    // Check if the rich text object has the expected structure
+    if (!richText || !richText.content) {
+        return 'No content available';
+    }
+    
+    // Add a wrapper div with styling
+    return `<div class="rich-text-content">${processRichTextNode(richText)}</div>`;
+}
+
+// Helper function to process a Rich Text node
+function processRichTextNode(node) {
+    // If node is null or undefined, return empty string
+    if (!node) return '';
+    
+    // Process based on node type
+    switch (node.nodeType) {
+        case 'document':
+            return node.content.map(processRichTextNode).join('');
+            
+        case 'paragraph':
+            return `<p>${node.content.map(processRichTextNode).join('')}</p>`;
+            
+        case 'heading-1':
+            return `<h1>${node.content.map(processRichTextNode).join('')}</h1>`;
+            
+        case 'heading-2':
+            return `<h2>${node.content.map(processRichTextNode).join('')}</h2>`;
+            
+        case 'heading-3':
+            return `<h3>${node.content.map(processRichTextNode).join('')}</h3>`;
+            
+        case 'heading-4':
+            return `<h4>${node.content.map(processRichTextNode).join('')}</h4>`;
+            
+        case 'heading-5':
+            return `<h5>${node.content.map(processRichTextNode).join('')}</h5>`;
+            
+        case 'heading-6':
+            return `<h6>${node.content.map(processRichTextNode).join('')}</h6>`;
+            
+        case 'unordered-list':
+            return `<ul>${node.content.map(processRichTextNode).join('')}</ul>`;
+            
+        case 'ordered-list':
+            return `<ol>${node.content.map(processRichTextNode).join('')}</ol>`;
+            
+        case 'list-item':
+            return `<li>${node.content.map(processRichTextNode).join('')}</li>`;
+            
+        case 'blockquote':
+            return `<blockquote>${node.content.map(processRichTextNode).join('')}</blockquote>`;
+            
+        case 'hr':
+            return '<hr>';
+            
+        case 'hyperlink':
+            return `<a href="${node.data.uri}" target="_blank" rel="noopener noreferrer">${node.content.map(processRichTextNode).join('')}</a>`;
+            
+        case 'text':
+            let text = node.value;
+            
+            // Apply marks (bold, italic, etc.)
+            if (node.marks && node.marks.length > 0) {
+                node.marks.forEach(mark => {
+                    switch (mark.type) {
+                        case 'bold':
+                            text = `<strong>${text}</strong>`;
+                            break;
+                        case 'italic':
+                            text = `<em>${text}</em>`;
+                            break;
+                        case 'underline':
+                            text = `<u>${text}</u>`;
+                            break;
+                        case 'code':
+                            text = `<code>${text}</code>`;
+                            break;
+                    }
+                });
+            }
+            
+            return text;
+            
+        default:
+            console.log('Unknown node type:', node.nodeType);
+            return '';
+    }
+}
+
 // Function to render the blog post content
 function renderBlogPost(post) {
     // Set the page title and meta tags dynamically
@@ -156,7 +247,15 @@ function renderBlogPost(post) {
     
     // Set content
     const contentElement = document.getElementById('post-content');
-    contentElement.innerHTML = post.fields.content;
+    
+    // Check if content is an object (rich text) or a string
+    if (typeof post.fields.content === 'object') {
+        console.log('Content is a Rich Text object');
+        // Render Rich Text content
+        contentElement.innerHTML = renderRichText(post.fields.content);
+    } else {
+        contentElement.innerHTML = post.fields.content || post.fields.excerpt || 'No content available';
+    }
 }
 
 // Function to update meta tags for SEO
@@ -321,6 +420,34 @@ function setupThemeSwitcher() {
             document.documentElement.classList.add('dark-mode');
             themeToggle.checked = true;
             if (mobileThemeToggle) mobileThemeToggle.checked = true;
+        }
+        
+        // Toggle theme when switch is clicked
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                if (mobileThemeToggle) mobileThemeToggle.checked = true;
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                if (mobileThemeToggle) mobileThemeToggle.checked = false;
+            }
+        });
+        
+        // Mobile theme toggle
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.documentElement.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.checked = true;
+                } else {
+                    document.documentElement.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.checked = false;
+                }
+            });
         }
         
         // Toggle theme when switch is clicked

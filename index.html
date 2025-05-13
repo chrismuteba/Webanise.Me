@@ -537,7 +537,7 @@
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Stay updated with our latest insights, tips, and industry news.</p>
             </div>
             
-            <div id="blog-posts" class="grid grid-cols-1 gap-8 stagger-animation">
+            <div id="blog-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation">
                 <!-- Blog posts will be loaded here via JavaScript -->
                 <div class="animate-pulse bg-gray-100 rounded-lg overflow-hidden shadow-md">
                     <div class="h-48 bg-gray-200"></div>
@@ -648,7 +648,10 @@
                         
                         <!-- Contact Form Panel -->
                         <div class="contact-form-panel md:w-1/2 p-8 md:p-12" style="border-radius: 0 12px 12px 0;">
-                            <form id="contactForm" class="space-y-8">
+                            <form id="contactForm" class="space-y-8" action="https://formspree.io/f/mpwdodpp" method="POST">
+                                <!-- Hidden inputs for Formspree configuration -->
+                                <input type="hidden" name="_next" value="#formSuccess">
+                                <input type="hidden" name="_format" value="json">
                                 <div class="form-group">
                                     <label for="name" class="block text-gray-700 font-medium mb-2" aria-label="Your Name, required">Your Name*</label>
                                     <input type="text" id="name" name="name" required
@@ -728,8 +731,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </div>
-                                <h4 class="text-xl font-bold mb-2">Thank You!</h4>
-                                <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+                                <h4 class="text-xl font-bold mb-2">Thank You for Contacting Us!</h4>
+                                <p class="mb-3">Your message has been received successfully. Our team will review your inquiry and respond within 24 hours.</p>
+                                <p class="text-sm">If you have an urgent matter, please feel free to contact us directly via phone.</p>
                             </div>
                         </div>
                     </div>

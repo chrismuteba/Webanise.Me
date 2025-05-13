@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Form submission
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission
             
             // Validate all required inputs
             let isValid = true;
@@ -264,29 +264,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            if (isValid) {
-                // Show loading spinner
-                loadingSpinner.classList.remove('hidden');
-                submitButton.disabled = true;
-                
-                // Simulate form submission (replace with actual AJAX in production)
-                setTimeout(() => {
-                    // Hide form and show success message
-                    contactForm.classList.add('hidden');
-                    formSuccess.classList.remove('hidden');
-                    
-                    // Reset form
-                    contactForm.reset();
-                    if (fileNameDisplay) fileNameDisplay.textContent = '';
-                    
-                    // Hide loading spinner
-                    loadingSpinner.classList.add('hidden');
-                    submitButton.disabled = false;
-                    
-                    // In a real application, you would send the form data to a server here
-                    console.log('Form submitted successfully');
-                }, 1500);
+            if (!isValid) {
+                return; // Stop if validation fails
             }
+            
+            // Show loading spinner
+            loadingSpinner.classList.remove('hidden');
+            submitButton.disabled = true;
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            // Submit form data to Formspree using fetch API
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .then(data => {
+                // Hide form and show success message
+                contactForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+                
+                // Reset form
+                contactForm.reset();
+                if (fileNameDisplay) fileNameDisplay.textContent = '';
+                
+                // Scroll to success message
+                formSuccess.scrollIntoView({ behavior: 'smooth' });
+                
+                console.log('Form submitted successfully');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem submitting your form. Please try again later.');
+            })
+            .finally(() => {
+                // Hide loading spinner
+                loadingSpinner.classList.add('hidden');
+                submitButton.disabled = false;
+            });
         });
     }
     

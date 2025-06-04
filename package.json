@@ -6,12 +6,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "gh-pages -d dist",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
-    "astro": "^5.8.1"
+    "astro": "^5.8.1",
+    "contentful": "^11.5.25"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }

@@ -3,7 +3,7 @@ import { client } from '../lib/contentful.js';
 
 // Fetch blog posts from Contentful
 const response = await client.getEntries({
-  content_type: 'blogPost', // Replace with your Contentful content type ID
+  content_type: 'webaniseMe', // Replace with your Contentful content type ID
   order: '-fields.publishedDate' // Optional: order by publish date, newest first
 });
 

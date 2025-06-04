@@ -3,23 +3,31 @@ name: Deploy Astro site to GitHub Pages
 on:
   push:
     branches:
-      - master  # or 'main' if your default branch is main
+      - master  # Change to 'main' if your branch is named 'main'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Install dependencies
         run: npm ci
+
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.PUBLIC_CONTENTFUL_SPACE_ID }}
+          PUBLIC_CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.PUBLIC_CONTENTFUL_DELIVERY_TOKEN }}
+
       - name: Add CNAME for custom domain
         run: echo "webanise.me" > ./dist/CNAME
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

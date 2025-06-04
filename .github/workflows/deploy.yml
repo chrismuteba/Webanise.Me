@@ -3,7 +3,7 @@ name: Deploy Astro site to GitHub Pages
 on:
   push:
     branches:
-      - main  # change to 'main' if your default branch is main
+      - master  # or 'main' if your default branch is main
 
 jobs:
   build:
@@ -18,6 +18,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Add CNAME for custom domain
+        run: echo "webanise.me" > ./dist/CNAME
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

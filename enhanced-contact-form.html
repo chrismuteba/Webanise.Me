@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form | Webanise.me</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for the enhanced contact form */
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        .radio-container {
+            position: relative;
+        }
+        
+        .custom-radio input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .custom-radio label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .custom-radio input[type="radio"]:checked + label {
+            border-color: #0d8b9c;
+            background-color: rgba(13, 139, 156, 0.05);
+        }
+        
+        .custom-radio input[type="radio"]:focus + label {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        .custom-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .custom-checkbox label {
+            position: relative;
+            padding-left: 2rem;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .custom-checkbox label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.125rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + label:before {
+            background-color: #0d8b9c;
+            border-color: #0d8b9c;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + label:after {
+            content: '';
+            position: absolute;
+            left: 0.45rem;
+            top: 0.45rem;
+            width: 0.375rem;
+            height: 0.625rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .custom-checkbox input[type="checkbox"]:focus + label:before {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        /* Form success message */
+        .success-message {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .form-submitted .success-message {
+            display: block;
+        }
+        
+        .form-submitted form {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-secondary mb-4">Contact Us</h1>
+                <p class="text-xl text-gray-600">Let's discuss how we can help your business thrive online.</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8 md:p-10">
+                <!-- Success Message (Initially Hidden) -->
+                <div class="success-message text-center py-16">
+                    <div class="mb-6 text-primary">
+                        <i class="fas fa-check-circle text-6xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-secondary mb-4">Thank you for reaching out!</h2>
+                    <p class="text-xl text-gray-600 mb-8">We've received your inquiry and will be in touch within 24 hours.</p>
+                    <a href="index.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300">Return to Homepage</a>
+                </div>
+                
+                <!-- Contact Form -->
+                <form id="contactForm" class="space-y-8">
+                    <!-- Contact Information -->
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Full Name <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="fullName" 
+                                    name="fullName" 
+                                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                                    placeholder="Your full name" 
+                                    required
+                                >
+                            </div>
+                            
+                            <!-- Email Address -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Email Address <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                                    placeholder="your@email.com" 
+                                    required
+                                >
+                            </div>
+                            
+                            <!-- Phone Number -->
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Phone Number
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                                    placeholder="+44 123 456 7890"
+                                >
+                            </div>
+                            
+                            <!-- Company Name -->
+                            <div>
+                                <label for="company" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Name
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="company" 
+                                    name="company" 
+                                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                                    placeholder="Your company name"
+                                >
+                            </div>
+                            
+                            <!-- Website URL -->
+                            <div class="md:col-span-2">
+                                <label for="website" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Website URL
+                                </label>
+                                <input 
+                                    type="url" 
+                                    id="website" 
+                                    name="website" 
+                                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200" 
+                                    placeholder="https://yourwebsite.com"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Selection -->
+                    <div class="space-y-6">
+                        <div class="space-y-4">
+                            <p class="text-sm font-medium text-gray-700">Select the service you're interested in: <span class="text-red-500">*</span></p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <!-- Website Design & Development -->
+                                <div class="custom-radio">
+                                    <input 
+                                        type="radio" 
+                                        id="service-web-design" 
+                                        name="service" 
+                                        value="Website Design & Development" 
+                                        required
+                                    >
+                                    <label for="service-web-design" class="text-sm">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-laptop-code text-primary mr-2"></i>
+                                            <span>Website Design & Development</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <!-- Business Automation Solutions -->
+                                <div class="custom-radio">
+                                    <input
+                                        type="radio"
+                                        id="service-automation"
+                                        name="service"
+                                        value="Business Automation Solutions"
+                                        required
+                                    >
+                                    <label for="service-automation" class="text-sm">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-robot text-primary mr-2"></i>
+                                            <span>Business Automation Solutions</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <!-- Industry-Specific Digital Solution -->
+                                <div class="custom-radio">
+                                    <input
+                                        type="radio"
+                                        id="service-industry"
+                                        name="service"
+                                        value="Industry-Specific Digital Solution"
+                                        required
+                                    >
+                                    <label for="service-industry" class="text-sm">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-industry text-primary mr-2"></i>
+                                            <span>Industry-Specific Digital Solution</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <!-- Custom Automation Project -->
+                                <div class="custom-radio">
+                                    <input
+                                        type="radio"
+                                        id="service-custom"
+                                        name="service"
+                                        value="Custom Automation Project"
+                                        required
+                                    >
+                                    <label for="service-custom" class="text-sm">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-cogs text-primary mr-2"></i>
+                                            <span>Custom Automation Project</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <!-- Other -->
+                                <div class="custom-radio">
+                                    <input
+                                        type="radio"
+                                        id="service-other"
+                                        name="service"
+                                        value="Other"
+                                        required
+                                    >
+                                    <label for="service-other" class="text-sm">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-question-circle text-primary mr-2"></i>
+                                            <span>Other</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Industry Selection (Initially Hidden) -->
+                        <div id="industry-selection" class="hidden space-y-4 mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-sm font-medium text-gray-700">Please select your industry: <span class="text-red-500">*</span></p>
+                            
+                            <select
+                                id="industry"
+                                name="industry"
+                                class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                            >
+                                <option value="" disabled selected>Select your industry</option>
+                                <option value="Restaurant & Hospitality">Restaurant & Hospitality</option>
+                                <option value="Professional Services">Professional Services</option>
+                                <option value="Retail & E-commerce">Retail & E-commerce</option>
+                                <option value="Health & Wellness">Health & Wellness</option>
+                                <option value="Home Services">Home Services</option>
+                                <option value="Education & Training">Education & Training</option>
+                                <option value="Event Planning & Venues">Event Planning & Venues</option>
+                                <option value="Other Industry">Other Industry</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Message Section -->
+                    <div class="space-y-6">
+                        <!-- Message/Inquiry -->
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                                Tell us about your inquiry <span class="text-red-500">*</span>
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                placeholder="Please share details about what you're looking for, your requirements, or any questions you have..."
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Consent & Submit Section -->
+                    <div class="space-y-6">
+                        <div class="space-y-4">
+                            <!-- Newsletter Subscription -->
+                            <div class="custom-checkbox">
+                                <input 
+                                    type="checkbox" 
+                                    id="newsletter" 
+                                    name="newsletter" 
+                                    value="yes"
+                                >
+                                <label for="newsletter" class="text-sm text-gray-700">
+                                    Subscribe to our newsletter for tips and updates
+                                </label>
+                            </div>
+                            
+                            <!-- Privacy Policy Consent -->
+                            <div class="custom-checkbox">
+                                <input 
+                                    type="checkbox" 
+                                    id="privacy-policy" 
+                                    name="privacy-policy" 
+                                    value="yes"
+                                    required
+                                >
+                                <label for="privacy-policy" class="text-sm text-gray-700">
+                                    I agree to the <a href="privacy-policy.html" class="text-primary hover:underline" target="_blank">privacy policy</a> and <a href="terms-of-service.html" class="text-primary hover:underline" target="_blank">terms</a> <span class="text-red-500">*</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- GDPR Compliance Text -->
+                        <div class="text-sm text-gray-500 italic">
+                            By submitting this form, you consent to us collecting and processing your personal information for the purpose of responding to your inquiry. We respect your privacy and will never share your details with third parties.
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div>
+                            <button 
+                                type="submit" 
+                                class="w-full py-3 px-4 bg-[#0d8b9c] text-white font-bold rounded-lg hover:bg-[#0a3b5c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d8b9c] transition duration-300 flex items-center justify-center"
+                            >
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Show/hide industry selection based on service choice
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all service radio buttons and the industry selection div
+            const serviceRadios = document.querySelectorAll('input[name="service"]');
+            const industrySelection = document.getElementById('industry-selection');
+            
+            // Initial check in case the page loads with a selection already made
+            function checkIndustryVisibility() {
+                const isIndustrySpecific = document.getElementById('service-industry').checked;
+                if (isIndustrySpecific) {
+                    industrySelection.classList.remove('hidden');
+                    document.getElementById('industry').setAttribute('required', 'required');
+                } else {
+                    industrySelection.classList.add('hidden');
+                    document.getElementById('industry').removeAttribute('required');
+                }
+            }
+            
+            // Check initial state
+            checkIndustryVisibility();
+            
+            // Add event listeners to all service radio buttons
+            serviceRadios.forEach(radio => {
+                radio.addEventListener('change', checkIndustryVisibility);
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would normally send the form data to your server
+                // For demonstration, we'll just show the success message
+                setTimeout(() => {
+                    document.querySelector('.bg-white').classList.add('form-submitted');
+                    // Scroll to top of form container
+                    window.scrollTo({
+                        top: document.querySelector('.bg-white').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -140,6 +140,110 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Industries dropdown functionality
+    const industriesDropdown = document.querySelector('.industries-dropdown-btn');
+    const industriesDropdownContent = document.querySelector('.group .dropdown-menu');
+    
+    // Initialize dropdown state (declare outside the if block for global access)
+    let isDropdownOpen = false;
+    
+    if (industriesDropdown && industriesDropdownContent) {
+        
+        // Show dropdown on click (for touch devices and desktop)
+        industriesDropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent navigation
+            
+            // Toggle dropdown visibility
+            if (!isDropdownOpen) {
+                industriesDropdownContent.style.display = 'block';
+                industriesDropdownContent.classList.add('dropdown-active');
+                isDropdownOpen = true;
+            } else {
+                industriesDropdownContent.style.display = 'none';
+                industriesDropdownContent.classList.remove('dropdown-active');
+                isDropdownOpen = false;
+            }
+            
+            // Toggle chevron rotation
+            const chevron = this.querySelector('i');
+            if (chevron) {
+                chevron.classList.toggle('rotate-180');
+            }
+        });
+        
+        // Handle clicking on dropdown items
+        const dropdownLinks = industriesDropdownContent.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // We want the link to work, but we need to update the dropdown state
+                // so it can be reopened later
+                setTimeout(() => {
+                    isDropdownOpen = false;
+                    industriesDropdownContent.style.display = 'none';
+                    industriesDropdownContent.classList.remove('dropdown-active');
+                }, 100);
+            });
+        });
+        
+        // Hide dropdown when clicking outside, but not on other navigation items
+        document.addEventListener('click', function(e) {
+            // Check if the click is outside the dropdown AND not on another navigation item
+            const isClickOutsideDropdown = !industriesDropdown.contains(e.target) && !industriesDropdownContent.contains(e.target);
+            
+            // Only close the dropdown if clicking outside
+            if (isClickOutsideDropdown) {
+                industriesDropdownContent.style.display = 'none';
+                industriesDropdownContent.classList.remove('dropdown-active');
+                isDropdownOpen = false;
+                
+                // Reset chevron rotation
+                const chevron = industriesDropdown.querySelector('i');
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                }
+            }
+        });
+    
+        // Ensure dropdown is closed when navigating to other pages (but not the Industries button itself)
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(navLink => {
+            navLink.addEventListener('click', function(e) {
+                // Only close dropdown if this is not the Industries button
+                if (!navLink.closest('.group')) {
+                    industriesDropdownContent.style.display = 'none';
+                    industriesDropdownContent.classList.remove('dropdown-active');
+                    isDropdownOpen = false;
+                    
+                    // Reset chevron rotation
+                    const chevron = industriesDropdown.querySelector('i');
+                    if (chevron) {
+                        chevron.classList.remove('rotate-180');
+                    }
+                }
+            });
+        });
+    
+        // Fix for dropdown freezing on specific items
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Allow the link to navigate normally
+                // Close dropdown after a short delay to allow navigation
+                setTimeout(() => {
+                    industriesDropdownContent.style.display = 'none';
+                    industriesDropdownContent.classList.remove('dropdown-active');
+                    isDropdownOpen = false;
+                    
+                    // Reset chevron rotation
+                    const chevron = industriesDropdown.querySelector('i');
+                    if (chevron) {
+                        chevron.classList.remove('rotate-180');
+                    }
+                }, 50);
+            });
+        });
+    }
+    
     // Sticky header with logo shrink on scroll
     const mainNav = document.getElementById('main-nav');
     const logoImg = mainNav.querySelector('img');
@@ -164,10 +268,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // FAQ section has been removed
     
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
+    // Smooth scrolling for navigation links (only for anchor links, not external pages)
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
     
-    navLinks.forEach(link => {
+    anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
@@ -177,10 +281,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 // Close mobile menu if open
-                if (!mobileMenu.classList.contains('hidden')) {
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
-                    menuBtn.querySelector('i').classList.remove('fa-times');
-                    menuBtn.querySelector('i').classList.add('fa-bars');
+                    if (menuBtn) {
+                        menuBtn.querySelector('i').classList.remove('fa-times');
+                        menuBtn.querySelector('i').classList.add('fa-bars');
+                    }
+                }
+                
+                // Close industries dropdown if open
+                if (industriesDropdownContent && industriesDropdownContent.style.display === 'block') {
+                    industriesDropdownContent.style.display = 'none';
+                    industriesDropdownContent.classList.remove('dropdown-active');
+                    isDropdownOpen = false;
+                    
+                    // Reset chevron rotation
+                    if (industriesDropdown) {
+                        const chevron = industriesDropdown.querySelector('i');
+                        if (chevron) {
+                            chevron.classList.remove('rotate-180');
+                        }
+                    }
                 }
                 
                 // Smooth scroll to target
@@ -196,18 +317,69 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        const nameInput = document.getElementById('name');
+        // Form elements
+        const fullNameInput = document.getElementById('fullName');
         const emailInput = document.getElementById('email');
         const phoneInput = document.getElementById('phone');
-        const messageInput = document.getElementById('message');
+        const messageInput = document.getElementById('project-details');
         const submitButton = document.getElementById('submit-button');
-        const loadingSpinner = submitButton.querySelector('.loading-spinner');
+        const loadingSpinner = submitButton?.querySelector('.loading-spinner');
         const formSuccess = document.getElementById('formSuccess');
-        const fileInput = document.getElementById('attachment');
-        const fileNameDisplay = document.getElementById('file-name');
+        
+        // File upload elements
+        const fileInput = document.getElementById('file-upload');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        
+        // Form navigation buttons
+        const nextButton = document.getElementById('next-button');
+        const prevButton = document.getElementById('prev-button');
+        
+        // Form step management
+        let currentStep = 1;
+        
+        // Helper functions for form navigation
+        function saveFormData() {
+            // Save form data to localStorage or handle as needed
+            console.log('Form data saved');
+        }
+        
+        function showStep(step) {
+            // Handle step navigation
+            currentStep = step;
+            console.log('Showing step:', step);
+        }
+        
+        // Industry selection
+        const serviceRadios = document.querySelectorAll('input[name="service"]');
+        const industrySelection = document.getElementById('industry-selection');
+        const industrySelect = document.getElementById('industry');
+        const existingSystemsQuestion = document.getElementById('existing-systems-question');
+        
+        // Show/hide industry selection based on service choice
+        function checkIndustryVisibility() {
+            const isIndustrySpecific = document.getElementById('service-industry') &&
+                                      document.getElementById('service-industry').checked;
+            
+            if (isIndustrySpecific && industrySelection) {
+                industrySelection.classList.remove('hidden');
+                if (industrySelect) {
+                    industrySelect.setAttribute('required', 'required');
+                }
+            } else if (industrySelection) {
+                industrySelection.classList.add('hidden');
+                if (industrySelect) {
+                    industrySelect.removeAttribute('required');
+                }
+            }
+            
+            // Always show existing systems question
+            if (existingSystemsQuestion) {
+                existingSystemsQuestion.classList.remove('hidden');
+            }
+        }
         
         // Real-time validation for inputs
-        const inputs = [nameInput, emailInput, phoneInput, messageInput];
+        const inputs = [fullNameInput, emailInput, phoneInput, messageInput];
         
         inputs.forEach(input => {
             if (!input) return;
@@ -248,7 +420,53 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Form submission
+        // Event listeners for form navigation
+        if (nextButton) {
+            nextButton.addEventListener('click', function() {
+                // Validate current step
+                const currentStepElement = document.querySelector(`.form-step:nth-of-type(${currentStep})`);
+                let isValid = true;
+                
+                if (currentStepElement) {
+                    const requiredFields = currentStepElement.querySelectorAll('[required]');
+                    requiredFields.forEach(field => {
+                        const fieldValid = validateInput(field);
+                        if (!fieldValid) isValid = false;
+                    });
+                }
+                
+                if (isValid) {
+                    saveFormData();
+                    showStep(currentStep + 1);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        }
+        
+        if (prevButton) {
+            prevButton.addEventListener('click', function() {
+                saveFormData();
+                showStep(currentStep - 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Listen for changes on service radio buttons
+        serviceRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                checkIndustryVisibility();
+                saveFormData();
+            });
+        });
+        
+        // Set up autosave on input change
+        contactForm.addEventListener('input', function(e) {
+            // Debounce the save operation
+            clearTimeout(window.autosaveTimer);
+            window.autosaveTimer = setTimeout(saveFormData, 1000);
+        });
+        
+        // Form submission with AJAX
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent default form submission
             
@@ -268,15 +486,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 return; // Stop if validation fails
             }
             
+            // Check reCAPTCHA if it's present
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse) {
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    alert('Please complete the reCAPTCHA verification.');
+                    return;
+                }
+            }
+            
             // Show loading spinner
-            loadingSpinner.classList.remove('hidden');
-            submitButton.disabled = true;
+            if (loadingSpinner) {
+                loadingSpinner.classList.remove('hidden');
+            }
+            if (submitButton) {
+                submitButton.disabled = true;
+            }
             
             // Get form data
             const formData = new FormData(contactForm);
             
-            // Submit form data to Formspree using fetch API
-            fetch(contactForm.action, {
+            // Add analytics tracking info
+            formData.append('source', 'website_contact_form');
+            formData.append('utm_source', new URLSearchParams(window.location.search).get('utm_source') || 'direct');
+            
+            // Submit form data using fetch API
+            fetch('https://formspree.io/f/mpwdodpp', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -291,18 +526,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .then(data => {
+                // Clear saved form data on successful submission
+                localStorage.removeItem('contactFormData');
+                localStorage.removeItem('contactFormStep');
+                
                 // Hide form and show success message
-                contactForm.classList.add('hidden');
-                formSuccess.classList.remove('hidden');
+                contactForm.style.display = 'none';
+                if (formSuccess) {
+                    formSuccess.classList.remove('hidden');
+                    formSuccess.style.display = 'block';
+                    
+                    // Scroll to success message
+                    formSuccess.scrollIntoView({ behavior: 'smooth' });
+                }
                 
                 // Reset form
                 contactForm.reset();
                 if (fileNameDisplay) fileNameDisplay.textContent = '';
                 
-                // Scroll to success message
-                formSuccess.scrollIntoView({ behavior: 'smooth' });
-                
                 console.log('Form submitted successfully');
+                
+                // Send analytics event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submission', {
+                        'event_category': 'Contact',
+                        'event_label': 'Contact Form'
+                    });
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -310,8 +560,12 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .finally(() => {
                 // Hide loading spinner
-                loadingSpinner.classList.add('hidden');
-                submitButton.disabled = false;
+                if (loadingSpinner) {
+                    loadingSpinner.classList.add('hidden');
+                }
+                if (submitButton) {
+                    submitButton.disabled = false;
+                }
             });
         });
     }
@@ -336,52 +590,47 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
             message = 'Please enter a valid email address';
         }
-        // Phone validation if has a pattern
-        else if (input.type === 'tel' && input.value.trim() && input.pattern && !new RegExp(input.pattern).test(input.value)) {
+        // Phone validation (simple check)
+        else if (input.id === 'phone' && input.value.trim() && !/^[0-9+\-\s()]{7,20}$/.test(input.value)) {
             isValid = false;
             message = 'Please enter a valid phone number';
         }
         
+        // Show validation message if invalid
         if (!isValid) {
-            input.classList.add('border-red-500');
-            validationMessage.textContent = message;
-            validationMessage.classList.remove('hidden');
+            showError(input, message);
         } else {
             input.classList.remove('border-red-500');
-            validationMessage.classList.add('hidden');
+            if (validationMessage) {
+                validationMessage.classList.add('hidden');
+            }
         }
         
         return isValid;
     }
     
-    // Design process animations are handled by the scroll animations
+    function showError(input, message) {
+        input.classList.add('border-red-500');
+        const validationMessage = input.parentElement.querySelector('.validation-message');
+        if (validationMessage) {
+            validationMessage.textContent = message;
+            validationMessage.classList.remove('hidden');
+        }
+    }
     
-    // No testimonial slider needed for commitment section
-    
-    // Animate elements on scroll
-    setupScrollAnimations();
-    
-    // Initialize theme switcher
-    setupThemeSwitcher();
-    
-    // Initialize scroll to top button
-    setupScrollToTop();
-    
-    // Initialize blog functionality if the blog section exists
-    if (document.getElementById('blog-posts')) {
-        setupBlog();
+    function isValidEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 });
 
-// Helper functions
 function showError(input, message) {
     input.classList.add('border-red-500');
-    
-    const errorMessage = document.createElement('p');
-    errorMessage.className = 'text-red-500 text-sm mt-1 error-message';
-    errorMessage.textContent = message;
-    
-    input.parentElement.appendChild(errorMessage);
+    const validationMessage = input.parentElement.querySelector('.validation-message');
+    if (validationMessage) {
+        validationMessage.textContent = message;
+        validationMessage.classList.remove('hidden');
+    }
 }
 
 function isValidEmail(email) {
@@ -389,268 +638,249 @@ function isValidEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
-// Function removed: setupPortfolioFilter was removed as it's no longer needed
-
-// Function removed: setupTestimonialSlider was removed as it's no longer needed
-
 function setupScrollAnimations() {
-    // Add animation classes to elements when they come into view
-    const animatedElements = document.querySelectorAll('.animate-on-scroll, .checkmark-icon, footer .container');
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
-    if (animatedElements.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    
-                    // Special animation for checkmark icon
-                    if (entry.target.classList.contains('checkmark-icon')) {
-                        // Add a slight delay for the checkmark animation
-                        setTimeout(() => {
-                            entry.target.style.animationPlayState = 'running';
-                        }, 300);
-                    }
-                    
-                    // Optional: remove from observation once animated
-                    // observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        animatedElements.forEach(element => {
-            // Set checkmark icons to have paused animation initially
-            if (element.classList.contains('checkmark-icon')) {
-                element.style.animationPlayState = 'paused';
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
             }
-            observer.observe(element);
         });
-    }
+    }, {
+        threshold: 0.1
+    });
+    
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
 }
 
-// Add a simple theme switcher (light/dark mode)
 function setupThemeSwitcher() {
     const themeToggle = document.getElementById('theme-toggle');
     const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const htmlElement = document.documentElement;
     
-    // Function to set theme
+    // Check for saved theme preference or use default
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
     const setTheme = function(isDark) {
         if (isDark) {
-            document.documentElement.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            if (themeToggle) themeToggle.checked = true;
-            if (mobileThemeToggle) mobileThemeToggle.checked = true;
+            htmlElement.classList.add('dark-mode');
+            localStorage.setItem('darkMode', 'true');
         } else {
-            document.documentElement.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            if (themeToggle) themeToggle.checked = false;
-            if (mobileThemeToggle) mobileThemeToggle.checked = false;
+            htmlElement.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'false');
         }
-    };
-    
-    // Check for saved theme preference or use preferred color scheme
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        setTheme(true);
+        
+        // Sync toggle state
+        if (themeToggle) themeToggle.checked = isDark;
+        if (mobileThemeToggle) mobileThemeToggle.checked = isDark;
     }
     
-    // Toggle theme when switches are clicked
+    // Initialize theme based on preference
+    setTheme(isDarkMode);
+    
+    // Set up toggle event listeners
     if (themeToggle) {
-        themeToggle.addEventListener('change', function() {
-            setTheme(this.checked);
-        });
+        themeToggle.addEventListener('change', () => setTheme(themeToggle.checked));
     }
     
     if (mobileThemeToggle) {
-        mobileThemeToggle.addEventListener('change', function() {
-            setTheme(this.checked);
-        });
+        mobileThemeToggle.addEventListener('change', () => setTheme(mobileThemeToggle.checked));
     }
 }
 
-// Setup scroll to top button functionality
 function setupScrollToTop() {
-    const scrollTopBtn = document.getElementById('scrollTop');
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
     
-    if (scrollTopBtn) {
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+    if (!scrollToTopBtn) return;
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.remove('hidden');
+            scrollToTopBtn.classList.add('flex');
+        } else {
+            scrollToTopBtn.classList.remove('flex');
+            scrollToTopBtn.classList.add('hidden');
+        }
+    });
+    
+    // Scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-        
-        // Scroll to top when button is clicked
-        scrollTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
+    });
 }
 
-// Blog functionality with Contentful integration - SIMPLIFIED VERSION
+// Blog functionality
 function setupBlog() {
+    // Only initialize blog functions if we're on a blog page
     const blogPostsContainer = document.getElementById('blog-posts');
-    const loadMoreButton = document.getElementById('load-more-posts');
-    let currentPage = 1;
-    const postsPerPage = 10; // Show more posts at once
+    const blogPagination = document.getElementById('blog-pagination');
     
-    // Function to fetch blog posts from Contentful
+    if (!blogPostsContainer) return;
+    
+    // Fetch blog posts from Contentful
     async function fetchBlogPosts(page = 1) {
         try {
-            // Contentful credentials
             const spaceId = '7rdix4olosoz';
             const accessToken = 'mGfX5V-d5lT1htDzVHimXxJ4eEJ4vn3M8OPtXcdL4as';
-            const contentTypeId = 'webaniseMe';
-            const environmentId = 'master';
+            const limit = 6;
+            const skip = (page - 1) * limit;
             
-            const skip = (page - 1) * postsPerPage;
-            // Ensure these fields are requested as specified in the requirements - now including content field
-            const url = `https://cdn.contentful.com/spaces/${spaceId}/environments/${environmentId}/entries?access_token=${accessToken}&content_type=${contentTypeId}&limit=${postsPerPage}&skip=${skip}&order=-sys.createdAt`;
+            // Fetch blog posts
+            const postsUrl = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=blogPost&order=-sys.createdAt&limit=${limit}&skip=${skip}`;
+            const postsResponse = await fetch(postsUrl);
+            const postsData = await postsResponse.json();
             
-            console.log('Fetching blog posts from URL:', url);
+            // Fetch assets (images) 
+            const assetsUrl = `https://cdn.contentful.com/spaces/${spaceId}/environments/master/assets?access_token=${accessToken}`;
+            const assetsResponse = await fetch(assetsUrl);
+            const assetsData = await assetsResponse.json();
             
-            const response = await fetch(url);
-            console.log('Response status:', response.status);
-            
-            if (!response.ok) {
-                throw new Error(`Failed to fetch blog posts: ${response.status} ${response.statusText}`);
-            }
-            
-            const data = await response.json();
-            console.log('Data received:', data ? 'Yes' : 'No');
-            return data;
+            return {
+                posts: postsData.items,
+                assets: assetsData.items,
+                total: postsData.total
+            };
         } catch (error) {
             console.error('Error fetching blog posts:', error);
-            console.log('Error details:', error.message);
-            return null;
+            return { posts: [], assets: [], total: 0 };
         }
     }
     
-    // Function to render blog posts
+    // Render blog posts
     function renderBlogPosts(posts, assets) {
-        // Clear loading placeholders if it's the first page
-        if (currentPage === 1) {
-            blogPostsContainer.innerHTML = '';
-        }
-        
-        // If no posts are returned, show a message
         if (!posts || posts.length === 0) {
-            const noPostsMessage = document.createElement('div');
-            noPostsMessage.className = 'col-span-full text-center py-8';
-            noPostsMessage.innerHTML = `
-                <p class="text-xl text-gray-600">No blog posts found. Check back soon!</p>
-            `;
-            blogPostsContainer.appendChild(noPostsMessage);
-            
-            // Hide load more button
-            if (loadMoreButton) {
-                loadMoreButton.style.display = 'none';
-            }
+            blogPostsContainer.innerHTML = '<p class="text-center text-gray-600">No blog posts found. Check back soon!</p>';
             return;
         }
         
-        // Process and render each post
-        posts.forEach(post => {
-            // Find the featured image asset
-            const featuredImageId = post.fields.featuredImage?.sys?.id;
-            const featuredImage = featuredImageId ?
-                assets.find(asset => asset.sys.id === featuredImageId) : null;
+        const postsHTML = posts.map(post => {
+            const fields = post.fields;
+            const title = fields.title || 'Untitled Post';
+            const slug = fields.slug || '';
+            const excerpt = fields.excerpt || '';
+            const date = new Date(post.sys.createdAt);
             
-            // Create post element
-            const postElement = document.createElement('div');
-            postElement.className = 'bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 animate-on-scroll';
+            // Find featured image if available
+            let imageUrl = 'https://via.placeholder.com/800x450/0d8b9c/ffffff?text=Webanise.me';
+            let imageAlt = 'Blog post image';
+            
+            if (fields.featuredImage && fields.featuredImage.sys) {
+                const imageId = fields.featuredImage.sys.id;
+                const imageAsset = assets.find(asset => asset.sys.id === imageId);
+                
+                if (imageAsset && imageAsset.fields) {
+                    imageUrl = imageAsset.fields.file.url.startsWith('//') 
+                        ? `https:${imageAsset.fields.file.url}` 
+                        : imageAsset.fields.file.url;
+                    imageAlt = imageAsset.fields.title || imageAlt;
+                }
+            }
             
             // Format date
-            const date = new Date(post.sys.createdAt);
             const formattedDate = date.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             });
             
-            // Generate post HTML - now showing full content directly
-            postElement.innerHTML = `
-                <div class="relative">
-                    ${featuredImage ?
-                        `<img src="${featuredImage.fields.file.url}" alt="${post.fields.title}" class="w-full h-48 object-cover">` :
-                        `<div class="w-full h-48 bg-gray-200 flex items-center justify-center">
-                            <span class="text-gray-500">No image available</span>
-                        </div>`
-                    }
-                    <div class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 m-2 rounded">
-                        ${post.fields.category || 'General'}
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="text-sm text-gray-500 mb-2">${formattedDate}</div>
-                    <h3 class="text-xl font-bold text-secondary mb-3">
-                        ${post.fields.title}
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                        ${post.fields.excerpt || (post.fields.content ? post.fields.content.substring(0, 200) + '...' : 'No content available')}
-                    </p>
-                    <a href="blog-post.html?slug=${post.fields.slug}" class="text-primary font-bold hover:underline transition-colors">Read More</a>
+            return `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <a href="blog-post.html?slug=${slug}" class="block">
+                        <div class="h-48 overflow-hidden">
+                            <img src="${imageUrl}" alt="${imageAlt}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-500 mb-2">${formattedDate}</p>
+                            <h3 class="text-xl font-bold text-secondary mb-2">${title}</h3>
+                            <p class="text-gray-600 mb-4">${excerpt}</p>
+                            <span class="inline-block text-primary font-bold hover:underline">Read More →</span>
+                        </div>
+                    </a>
                 </div>
             `;
-            
-            // No click event needed as the link now navigates directly to the blog post page
-            
-            // Add to container
-            blogPostsContainer.appendChild(postElement);
-        });
+        }).join('');
         
-        // Initialize animations for new elements
-        setupScrollAnimations();
+        blogPostsContainer.innerHTML = postsHTML;
     }
     
-    // We're now showing full content directly on the page, so no modal needed
-    
-    // Load initial blog posts
+    // Load blog posts with pagination
     async function loadBlogPosts(page = 1) {
-        console.log('Fetching blog posts, page:', page);
-        const data = await fetchBlogPosts(page);
+        // Show loading indicator
+        blogPostsContainer.innerHTML = `
+            <div class="text-center py-12">
+                <i class="fas fa-spinner fa-spin text-3xl text-primary"></i>
+                <p class="mt-2 text-gray-600">Loading blog posts...</p>
+            </div>
+        `;
         
-        console.log('Blog data received:', data ? 'Yes' : 'No');
+        const { posts, assets, total } = await fetchBlogPosts(page);
         
-        if (data) {
-            const posts = data.items;
-            console.log('Number of posts received:', posts?.length);
-            if (posts && posts.length > 0) {
-                console.log('First post title:', posts[0].fields?.title);
-                console.log('First post slug:', posts[0].fields?.slug);
-                console.log('First post fields:', Object.keys(posts[0].fields));
-                console.log('First post content available:', posts[0].fields?.content ? 'Yes' : 'No');
-                console.log('First post excerpt available:', posts[0].fields?.excerpt ? 'Yes' : 'No');
+        // Render posts
+        renderBlogPosts(posts, assets);
+        
+        // Setup pagination if needed
+        if (blogPagination && total > 0) {
+            const pageSize = 6;
+            const totalPages = Math.ceil(total / pageSize);
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            paginationHTML += `
+                <button class="pagination-btn px-4 py-2 rounded-lg border ${page === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'}" 
+                    ${page === 1 ? 'disabled' : 'data-page="' + (page - 1) + '"'}>
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </button>
+            `;
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `
+                    <button class="pagination-btn px-4 py-2 rounded-lg border ${i === page ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}" 
+                        data-page="${i}">
+                        ${i}
+                    </button>
+                `;
             }
             
-            const assets = data.includes?.Asset || [];
-            console.log('Number of assets received:', assets.length);
+            // Next button
+            paginationHTML += `
+                <button class="pagination-btn px-4 py-2 rounded-lg border ${page === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'}" 
+                    ${page === totalPages ? 'disabled' : 'data-page="' + (page + 1) + '"'}>
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </button>
+            `;
             
-            renderBlogPosts(posts, assets);
+            blogPagination.innerHTML = paginationHTML;
             
-            // Hide load more button if no more posts
-            if (posts.length < postsPerPage) {
-                if (loadMoreButton) {
-                    loadMoreButton.style.display = 'none';
-                }
-            }
+            // Add event listeners to pagination buttons
+            document.querySelectorAll('.pagination-btn:not([disabled])').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const newPage = parseInt(e.currentTarget.getAttribute('data-page'));
+                    loadBlogPosts(newPage);
+                    
+                    // Scroll back to top of blog section
+                    document.querySelector('#blog').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
         }
     }
     
-    // Add event listener to load more button
-    if (loadMoreButton) {
-        loadMoreButton.addEventListener('click', function() {
-            currentPage++;
-            loadBlogPosts(currentPage);
-        });
-    }
-    
     // Initial load
-    loadBlogPosts();
+    loadBlogPosts(1);
 }
+
+// Initialize features when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    setupScrollAnimations();
+    setupThemeSwitcher();
+    setupScrollToTop();
+    setupBlog();
+});

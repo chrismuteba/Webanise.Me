@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://webanise.me/',
-  base: '/blog',  // This makes your blog available at webanise.me/blog/
+  base: '/blog',  // Blog will be available at webanise.me/blog/
   integrations: [mdx()],
   output: 'static',
   vite: {

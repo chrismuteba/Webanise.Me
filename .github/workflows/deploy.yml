@@ -19,17 +19,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Astro blog
         run: npm run build
         env:
           PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.PUBLIC_CONTENTFUL_SPACE_ID }}
           PUBLIC_CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.PUBLIC_CONTENTFUL_DELIVERY_TOKEN }}
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy blog to /blog/ subdirectory
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_dir: ./dist
-          destination_dir: blog  # This puts the blog in a /blog/ folder
-          keep_files: true       # This preserves your main site files
+          destination_dir: blog
+          keep_files: true  # This preserves your main website files
           publish_branch: gh-pages

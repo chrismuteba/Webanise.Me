@@ -3,7 +3,7 @@ name: Deploy Astro site to GitHub Pages
 on:
   push:
     branches:
-      - master  # Change to 'main' if your branch is named 'main'
+      - master  # or 'main' if that's your branch
 
 jobs:
   build:
@@ -34,4 +34,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          repository: chrismuteba/Webanise.Me

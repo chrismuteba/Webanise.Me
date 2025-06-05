@@ -1,4 +1,4 @@
-name: Deploy Astro site to GitHub Pages
+name: Deploy Astro blog to GitHub Pages
 
 on:
   push:
@@ -25,12 +25,11 @@ jobs:
           PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.PUBLIC_CONTENTFUL_SPACE_ID }}
           PUBLIC_CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.PUBLIC_CONTENTFUL_DELIVERY_TOKEN }}
 
-      - name: Add CNAME for custom domain
-        run: echo "webanise.me" > ./dist/CNAME
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_dir: ./dist
+          destination_dir: blog  # This puts the blog in a /blog/ folder
+          keep_files: true       # This preserves your main site files
           publish_branch: gh-pages

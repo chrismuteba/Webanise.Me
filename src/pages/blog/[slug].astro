@@ -1,10 +1,10 @@
 ---
 import { client } from '../../lib/contentful.js';
 
-// 1. Fetch all posts to generate static paths
+// Replace 'blogPost' with your actual Contentful content type ID if different
 export async function getStaticPaths() {
   const res = await client.getEntries({
-    content_type: 'webaniseMe', // Use your correct content type ID!
+    content_type: 'webaniseMe',
   });
   return res.items.map(post => ({
     params: { slug: post.fields.slug },
@@ -12,7 +12,6 @@ export async function getStaticPaths() {
   }));
 }
 
-// 2. Single post data is available as Astro.props.post
 const { post } = Astro.props;
 ---
 

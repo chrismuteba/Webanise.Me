@@ -1,0 +1,32 @@
+---
+import { client } from '../../lib/contentful.js';
+
+// 1. Fetch all posts to generate static paths
+export async function getStaticPaths() {
+  const res = await client.getEntries({
+    content_type: 'webaniseMe', // Use your correct content type ID!
+  });
+  return res.items.map(post => ({
+    params: { slug: post.fields.slug },
+    props: { post },
+  }));
+}
+
+// 2. Single post data is available as Astro.props.post
+const { post } = Astro.props;
+---
+
+<html>
+  <head>
+    <title>{post.fields.title} | Webanise.me SME Blog</title>
+    <meta name="description" content="{post.fields.excerpt || ''}" />
+  </head>
+  <body>
+    <h1>{post.fields.title}</h1>
+    <p><em>{post.fields.publishedDate || ''}</em></p>
+    <div>
+      {post.fields.content}
+    </div>
+    <a href="/">← Back to blog</a>
+  </body>
+</html>

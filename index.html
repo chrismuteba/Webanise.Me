@@ -1,1 +1,1335 @@
-<!DOCTYPE html><h1>Webanise.Me SME Blog</h1> <ul> <li> <a href="/blog/affordable-websites-for-smes/"> <h2>Affordable Website Design for Small Businesses: Professional Sites from £19.99/month</h2> </a> <p>Discover how Webanise.Me helps small and medium enterprises get professional websites at affordable prices. Learn what &#39;webanised&#39; means and why it matters for your business growth</p> </li> </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional website development and powerful business automation solutions for UK small businesses. Affordable setup fees, clear monthly pricing, and industry-specific expertise.">
+    <meta name="keywords" content="website design, business automation, UK SME websites, affordable web development, small business websites, professional web design, business process automation">
+    <title>Webanise.me | Affordable Websites & Business Automation for UK SMEs</title>
+    
+    <!-- Schema.org markup for local business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Webanise.me",
+      "description": "Professional website development and business automation solutions for UK small businesses.",
+      "url": "https://webanise.me",
+      "telephone": "+44 20 1234 5678",
+      "email": "info@webanise.me",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "United Kingdom"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      "priceRange": "££",
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 54.7023545,
+          "longitude": -3.2765753
+        },
+        "geoRadius": "500km"
+      }
+    }
+    </script>
+    <!-- Replace CDN with minified production version -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom Tailwind colors are defined in styles.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for the contact form */
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        .radio-container {
+            position: relative;
+        }
+        
+        .custom-radio input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .custom-radio label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .custom-radio input[type="radio"]:checked + label {
+            border-color: #0d8b9c;
+            background-color: rgba(13, 139, 156, 0.05);
+        }
+        
+        .custom-radio input[type="radio"]:focus + label {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        .custom-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .custom-checkbox label {
+            position: relative;
+            padding-left: 2rem;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .custom-checkbox label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.125rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + label:before {
+            background-color: #0d8b9c;
+            border-color: #0d8b9c;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + label:after {
+            content: '';
+            position: absolute;
+            left: 0.45rem;
+            top: 0.45rem;
+            width: 0.375rem;
+            height: 0.625rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .custom-checkbox input[type="checkbox"]:focus + label:before {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        /* Form success message */
+        .success-message {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .form-submitted .success-message {
+            display: block;
+        }
+        
+        .form-submitted form {
+            display: none;
+        }
+        
+        /* Form input focus states */
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" id="main-nav">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <img src="Logo.png" alt="WebaniseMe Logo" class="h-20" onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80/0d8b9c/ffffff?text=W'; this.classList.add('bg-primary', 'rounded-full', 'p-2');">
+                        <span class="text-2xl font-bold"><span class="text-secondary">WEBANISE</span><span class="text-primary">.ME</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Home</a>
+                    <a href="web-design-services.html" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Web Design</a>
+                    <a href="business-automation-solutions.html" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Automation</a>
+                    
+                    <!-- Industries Dropdown -->
+                    <div class="relative ml-4 group">
+                        <button class="industries-dropdown-btn text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors flex items-center">
+                            <span>Industries</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                <a href="restaurant-hospitality-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Restaurants & Hospitality</a>
+                                <a href="professional-services-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Professional Services</a>
+                                <a href="health-wellness-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Health & Wellness</a>
+                                <!-- More industry pages will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#blog" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Blog</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Contact</a>
+                    
+                    <!-- Theme toggle switch -->
+                    <div class="theme-switch-wrapper ml-4">
+                        <label class="theme-switch" for="theme-toggle">
+                            <input type="checkbox" id="theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                        <span class="ml-2 text-sm text-gray-700"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Home</a>
+                <a href="web-design-services.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Web Design</a>
+                <a href="business-automation-solutions.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Automation</a>
+                
+                <!-- Industries Section in Mobile Menu -->
+                <div class="py-2 border-t border-gray-100 mt-2">
+                    <p class="text-sm font-semibold text-gray-500 mb-2 px-1">INDUSTRIES</p>
+                    <a href="restaurant-hospitality-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Restaurants & Hospitality</a>
+                    <a href="professional-services-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Professional Services</a>
+                    <a href="health-wellness-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Health & Wellness</a>
+                    <!-- More industry pages will be added here -->
+                </div>
+                
+                <a href="#blog" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Blog</a>
+                <a href="#contact" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Contact</a>
+                
+                <!-- Mobile theme toggle -->
+                <div class="flex items-center py-2">
+                    <span class="text-gray-700 mr-2">Dark Mode</span>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="mobile-theme-toggle">
+                            <input type="checkbox" id="mobile-theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white py-20">
+        <!-- Moving Background Image with fallback -->
+        <div class="moving-background"
+             style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');"></div>
+        
+        <!-- Background Overlay -->
+        <div class="background-overlay"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-on-scroll hero-headline text-center px-4 md:px-0">WEBANISE.ME</h1>
+            <h2 class="text-2xl md:text-4xl font-bold mb-4 animate-on-scroll hero-headline text-center px-4 md:px-0">Affordable Websites. Powerful Automation.</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-on-scroll hero-subheadline text-center px-4 md:px-0">Helping UK Small Businesses Thrive Online Since 2025</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 animate-on-scroll text-center">
+                <a href="#services" class="secondary-cta font-bold py-3 px-8 rounded-full transition duration-300 border-2 border-[#2A7F83] text-[#2A7F83] hover:bg-[#e0f7f8] hover:border-[3px] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 bg-transparent mb-4 md:mb-0 order-2 md:order-1">Get Started</a>
+                <a href="#services" class="primary-cta font-bold py-3 px-8 rounded-full transition duration-300 bg-[#2A7F83] text-white hover:bg-[#236e72] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 order-1 md:order-2">View Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Key Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Comprehensive solutions designed specifically for small businesses</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden service-card">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-laptop-code text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3 text-center">Web Design & Development</h3>
+                        <p class="text-gray-600 text-center">Beautiful, responsive websites that look professional and convert visitors into customers.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden service-card">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-robot text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3 text-center">Business Automation Solutions</h3>
+                        <p class="text-gray-600 text-center">Streamline your operations with custom automation tools that save time and reduce errors.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden service-card">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-industry text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3 text-center">Industry-Specific Digital Solutions</h3>
+                        <p class="text-gray-600 text-center">Tailored digital solutions designed for your specific industry needs and challenges.</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden service-card">
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-chart-line text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3 text-center">Ongoing Support & Optimization</h3>
+                        <p class="text-gray-600 text-center">Continuous improvement of your digital presence based on real performance data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Value Proposition Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-accent rounded-xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-secondary text-center">Why Choose Webanise.me?</h2>
+                
+                <p class="text-xl text-gray-700 leading-relaxed">
+                    Unlike DIY website builders or expensive agencies, Webanise.me combines professional web development with powerful automation at prices small businesses can afford.
+                </p>
+                
+                <div class="mt-8 flex justify-center">
+                    <a href="#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300 animate-on-scroll">Get Started Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Results Section -->
+    <section id="results" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">MORE THAN JUST A PRETTY WEBSITE</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Real business results that impact your bottom line</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Result 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll flex">
+                    <div class="mr-4 text-primary">
+                        <i class="fas fa-moon text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">24/7 lead generation while you sleep</h3>
+                        <p class="text-gray-600">Your website works around the clock to attract and convert potential customers.</p>
+                    </div>
+                </div>
+                
+                <!-- Result 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll flex">
+                    <div class="mr-4 text-primary">
+                        <i class="fas fa-sync-alt text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Automated customer follow-ups that boost conversions</h3>
+                        <p class="text-gray-600">Never miss an opportunity with automated communication that nurtures leads.</p>
+                    </div>
+                </div>
+                
+                <!-- Result 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll flex">
+                    <div class="mr-4 text-primary">
+                        <i class="fas fa-tasks text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Streamlined operations that save hours every week</h3>
+                        <p class="text-gray-600">Automate repetitive tasks and focus on growing your business instead.</p>
+                    </div>
+                </div>
+                
+                <!-- Result 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll flex">
+                    <div class="mr-4 text-primary">
+                        <i class="fas fa-building text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Professional online presence that builds credibility</h3>
+                        <p class="text-gray-600">Make a strong first impression that establishes trust with potential customers.</p>
+                    </div>
+                </div>
+                
+                <!-- Result 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll flex md:col-span-2 lg:col-span-1">
+                    <div class="mr-4 text-primary">
+                        <i class="fas fa-chart-bar text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Continuous optimization based on real performance data</h3>
+                        <p class="text-gray-600">We use analytics to constantly improve your digital presence for better results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web Design Services Section -->
+    <section id="pricing" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Web Design Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Professional websites that drive business growth at prices small businesses can afford.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-accent rounded-xl p-8 shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Starter -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Starter</h3>
+                        <div class="text-3xl font-bold text-primary mb-1">£299</div>
+                        <div class="text-lg text-primary mb-2">+ £29/month</div>
+                        <p class="text-gray-600">Perfect for small businesses just getting started online</p>
+                    </div>
+                    
+                    <!-- Business -->
+                    <div class="text-center bg-white p-4 rounded-lg shadow-md transform scale-105">
+                        <div class="bg-primary text-white py-1 px-2 rounded-t-lg -mt-4 mb-2">
+                            <span class="text-sm font-bold">MOST POPULAR</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-2">Business</h3>
+                        <div class="text-3xl font-bold text-primary mb-1">£399</div>
+                        <div class="text-lg text-primary mb-2">+ £49/month</div>
+                        <p class="text-gray-600">Ideal for established businesses looking to grow online</p>
+                    </div>
+                    
+                    <!-- Growth -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Growth</h3>
+                        <div class="text-3xl font-bold text-primary mb-1">£599</div>
+                        <div class="text-lg text-primary mb-2">+ £69/month</div>
+                        <p class="text-gray-600">For businesses ready to maximize their online potential</p>
+                    </div>
+                </div>
+                
+                <p class="text-center text-gray-700 mb-8">
+                    All packages include responsive design, SEO optimization, secure hosting, and regular backups.
+                </p>
+                
+                <div class="text-center">
+                    <a href="web-design-services.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300">View Full Package Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Process Section -->
+    <section id="design-process" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 animate-on-scroll">🚀 Our Design Process</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">We make launching your website easy — from idea to online, we're with you every step of the way.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Discovery -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary mb-3">Discovery</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>We start by learning about your business, goals, and audience.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>You'll fill out a quick brief so we can tailor your site to your brand.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Design & Content -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary mb-3">Design & Content</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>We create a clean, modern design and organize your content for impact.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Don't have content? No problem — we can assist with text and image selection.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Build & Optimize -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary mb-3">Build & Optimize</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>We build your site to be fast, mobile-friendly, and SEO-ready.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>You'll be able to review everything before going live.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Launch & Training -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary mb-3">Launch & Training</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>Once approved, we launch your site and provide training so you can update it anytime.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                    <span>We're here for ongoing support if needed.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-accent p-6 rounded-lg shadow-md max-w-3xl mx-auto mt-12 animate-on-scroll">
+                <p class="text-lg flex items-start">
+                    <span class="text-primary mr-2">⏱</span>
+                    <span>Timeline: 1–4 weeks depending on your package and content readiness.</span>
+                </p>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300 animate-on-scroll">Ready to Start Your Project?</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Commitment Section -->
+    <section id="our-commitment" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Commitment to You</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Partnering with WebaniseMe means a dedicated focus on your success. Here's what you can always expect from us:</p>
+            </div>
+            
+            <div class="commitment-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation">
+                <!-- Commitment 1: Communication -->
+                <div class="commitment-item bg-white rounded-lg shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="commitment-icon-container mx-auto mb-4">
+                        <svg class="commitment-icon w-16 h-16 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" class="text-primary"></path>
+                            <path d="M14 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" class="text-accent"></path>
+                            <path d="M17 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" class="text-accent"></path>
+                            <path d="M11 9.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" class="text-accent"></path>
+                        </svg>
+                    </div>
+                    <h3 class="commitment-title text-xl font-bold text-secondary mb-3">Clear & Consistent Communication</h3>
+                    <p class="commitment-description text-gray-600">We believe in keeping you informed every step of the way. Expect regular updates and a responsive team ready to answer your questions.</p>
+                </div>
+                
+                <!-- Commitment 2: Brand Focus -->
+                <div class="commitment-item bg-white rounded-lg shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="commitment-icon-container mx-auto mb-4">
+                        <svg class="commitment-icon w-16 h-16 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" class="text-primary"></circle>
+                            <circle cx="12" cy="12" r="6" class="text-primary"></circle>
+                            <circle cx="12" cy="12" r="2" class="text-accent"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="commitment-title text-xl font-bold text-secondary mb-3">Designs Tailored to Your Brand</h3>
+                    <p class="commitment-description text-gray-600">Your website will be a true reflection of your unique brand identity and crafted to resonate with your target audience.</p>
+                </div>
+                
+                <!-- Commitment 3: Transparency -->
+                <div class="commitment-item bg-white rounded-lg shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="commitment-icon-container mx-auto mb-4">
+                        <svg class="commitment-icon w-16 h-16 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" class="text-primary"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9" class="text-primary"></line>
+                            <line x1="9" y1="21" x2="9" y2="9" class="text-accent"></line>
+                            <line x1="15" y1="21" x2="15" y2="9" class="text-accent"></line>
+                        </svg>
+                    </div>
+                    <h3 class="commitment-title text-xl font-bold text-secondary mb-3">No Hidden Surprises, Just Value</h3>
+                    <p class="commitment-description text-gray-600">We pride ourselves on transparent pricing and processes. You'll know exactly what you're getting, with a focus on delivering exceptional value.</p>
+                </div>
+                
+                <!-- Commitment 4: Partnership -->
+                <div class="commitment-item bg-white rounded-lg shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="commitment-icon-container mx-auto mb-4">
+                        <svg class="commitment-icon w-16 h-16 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" class="text-primary"></path>
+                            <path d="M12 5.5v8" class="text-accent"></path>
+                            <path d="M8 9.5h8" class="text-accent"></path>
+                        </svg>
+                    </div>
+                    <h3 class="commitment-title text-xl font-bold text-secondary mb-3">Dedicated to Your Online Success</h3>
+                    <p class="commitment-description text-gray-600">Your goals are our goals. We're passionate about creating websites that not only look great but also help your business grow and succeed online.</p>
+                </div>
+                
+                <!-- Commitment 5: Support -->
+                <div class="commitment-item bg-white rounded-lg shadow-lg p-6 text-center animate-on-scroll md:col-span-2 lg:col-span-1">
+                    <div class="commitment-icon-container mx-auto mb-4">
+                        <svg class="commitment-icon w-16 h-16 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" class="text-primary"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" class="text-primary"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17" class="text-accent"></line>
+                        </svg>
+                    </div>
+                    <h3 class="commitment-title text-xl font-bold text-secondary mb-3">Reliable Support When You Need It</h3>
+                    <p class="commitment-description text-gray-600">We're here to support you post-launch, ensuring your website continues to perform optimally and meet your evolving needs.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300 animate-on-scroll">Start Your Journey With Us</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Blog</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Stay updated with our latest insights, tips, and industry news.</p>
+            </div>
+            
+            <div id="blog-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-animation">
+                <!-- Blog posts will be loaded here via JavaScript from Contentful -->
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-50 py-12 px-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold mb-3 text-gray-800">Contact Us</h2>
+          <p class="text-gray-600">Let's discuss how we can help your business thrive online.</p>
+        </div>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+              <!-- Success Message (Initially Hidden) -->
+              <div id="formSuccess" class="hidden success-message text-center py-16">
+                <div class="mb-6 text-primary">
+                  <i class="fas fa-check-circle text-6xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-secondary mb-4">Thank you for reaching out!</h2>
+                <p class="text-xl text-gray-600 mb-8">We've received your inquiry and will be in touch within 24 hours.</p>
+                <a href="index.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300">Return to Homepage</a>
+              </div>
+              
+              <!-- Contact Form -->
+              <form id="contactForm" action="https://formspree.io/f/mpwdodpp" method="POST" class="space-y-8">
+                <!-- Personal Information Section -->
+                <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Full Name -->
+                <div>
+                  <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">
+                    Full Name <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                    placeholder="Your full name"
+                    required
+                  >
+                </div>
+                
+                <!-- Email Address -->
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                    Email Address <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                    placeholder="your@email.com"
+                    required
+                  >
+                </div>
+                
+                <!-- Phone Number -->
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                    placeholder="+44 123 456 7890"
+                  >
+                </div>
+                
+                <!-- Company Name -->
+                <div>
+                  <label for="company" class="block text-sm font-medium text-gray-700 mb-1">
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                    placeholder="Your company name"
+                  >
+                </div>
+                
+                <!-- Website URL -->
+                <div class="md:col-span-2">
+                  <label for="website" class="block text-sm font-medium text-gray-700 mb-1">
+                    Website URL
+                  </label>
+                  <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                    placeholder="https://yourwebsite.com"
+                  >
+                </div>
+              </div>
+            </div>
+            
+                <!-- How Can We Help Section -->
+                <div class="space-y-6 mt-8">
+              <div class="space-y-4">
+                <p class="text-sm font-medium text-gray-700">Select the service you're interested in: <span class="text-red-500">*</span></p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <!-- Website Design & Development -->
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="service-web-design"
+                      name="service"
+                      value="Website Design & Development"
+                      required
+                    >
+                    <label for="service-web-design" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-laptop-code text-primary mr-2"></i>
+                        <span>Website Design & Development</span>
+                      </div>
+                    </label>
+                  </div>
+                  
+                  <!-- Business Automation Solutions -->
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="service-automation"
+                      name="service"
+                      value="Business Automation Solutions"
+                    >
+                    <label for="service-automation" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-robot text-primary mr-2"></i>
+                        <span>Business Automation Solutions</span>
+                      </div>
+                    </label>
+                  </div>
+                  
+                  <!-- Industry-Specific Digital Solution -->
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="service-industry"
+                      name="service"
+                      value="Industry-Specific Digital Solution"
+                    >
+                    <label for="service-industry" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-industry text-primary mr-2"></i>
+                        <span>Industry-Specific Digital Solution</span>
+                      </div>
+                    </label>
+                  </div>
+                  
+                  <!-- Custom Automation Project -->
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="service-custom"
+                      name="service"
+                      value="Custom Automation Project"
+                    >
+                    <label for="service-custom" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-cogs text-primary mr-2"></i>
+                        <span>Custom Automation Project</span>
+                      </div>
+                    </label>
+                  </div>
+                  
+                  <!-- Other -->
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="service-other"
+                      name="service"
+                      value="Other"
+                    >
+                    <label for="service-other" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-question-circle text-primary mr-2"></i>
+                        <span>Other</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Industry Selection (Initially Hidden) -->
+              <div id="industry-selection" class="hidden space-y-4 mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p class="text-sm font-medium text-gray-700">Please select your industry: <span class="text-red-500">*</span></p>
+                
+                <select
+                  id="industry"
+                  name="industry"
+                  class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                >
+                  <option value="" disabled selected>Select your industry</option>
+                  <option value="Restaurant & Hospitality">Restaurant & Hospitality</option>
+                  <option value="Professional Services">Professional Services</option>
+                  <option value="Health & Wellness">Health & Wellness</option>
+                </select>
+              </div>
+              
+              <!-- Existing Systems Question -->
+              <div id="existing-systems-question" class="space-y-4 mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p class="text-sm font-medium text-gray-700">Do you have existing website/automation systems? <span class="text-red-500">*</span></p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="existing-yes"
+                      name="existing-systems"
+                      value="Yes, looking to improve existing systems"
+                      required
+                    >
+                    <label for="existing-yes" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-sync-alt text-primary mr-2"></i>
+                        <span>Yes, looking to improve existing systems</span>
+                      </div>
+                    </label>
+                  </div>
+                  
+                  <div class="custom-radio">
+                    <input
+                      type="radio"
+                      id="existing-no"
+                      name="existing-systems"
+                      value="No, starting fresh"
+                    >
+                    <label for="existing-no" class="text-sm">
+                      <div class="flex items-center">
+                        <i class="fas fa-plus-circle text-primary mr-2"></i>
+                        <span>No, starting fresh</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Project Details Section -->
+            <div class="space-y-6">
+              <!-- Project Description -->
+              <div>
+                <label for="project-details" class="block text-sm font-medium text-gray-700 mb-1">
+                  Tell us about your project <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="project-details"
+                  name="project-details"
+                  rows="4"
+                  class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                  placeholder="Please share details about your project, requirements, and any specific features you need..."
+                  required
+                ></textarea>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Budget Range -->
+                <div>
+                  <label for="budget" class="block text-sm font-medium text-gray-700 mb-1">
+                    Budget Range <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="budget"
+                    name="budget"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                    required
+                  >
+                    <option value="" disabled selected>Select your budget range</option>
+                    <option value="Under £1,000">Under £1,000</option>
+                    <option value="£1,000 - £2,500">£1,000 - £2,500</option>
+                    <option value="£2,500 - £5,000">£2,500 - £5,000</option>
+                    <option value="£5,000+">£5,000+</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+                
+                <!-- How did you hear about us -->
+                <div>
+                  <label for="source" class="block text-sm font-medium text-gray-700 mb-1">
+                    How did you hear about us?
+                  </label>
+                  <select
+                    id="source"
+                    name="source"
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                  >
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Google Search">Google Search</option>
+                    <option value="Social Media">Social Media</option>
+                    <option value="Referral">Referral</option>
+                    <option value="Online Article/Blog">Online Article/Blog</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Consent & Submit Section -->
+            <div class="space-y-6">
+              <div class="space-y-4">
+                <!-- Newsletter Subscription -->
+                <div class="custom-checkbox">
+                  <input
+                    type="checkbox"
+                    id="newsletter"
+                    name="newsletter"
+                    value="yes"
+                  >
+                  <label for="newsletter" class="text-sm text-gray-700">
+                    Subscribe to our newsletter for tips and updates
+                  </label>
+                </div>
+                
+                <!-- Privacy Policy Consent -->
+                <div class="custom-checkbox">
+                  <input
+                    type="checkbox"
+                    id="privacy-policy"
+                    name="privacy-policy"
+                    value="yes"
+                    required
+                  >
+                  <label for="privacy-policy" class="text-sm text-gray-700">
+                    I agree to the <a href="privacy-policy.html" class="text-primary hover:underline" target="_blank">privacy policy</a> and <a href="terms-of-service.html" class="text-primary hover:underline" target="_blank">terms</a> <span class="text-red-500">*</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- GDPR Compliance Text -->
+              <div class="text-sm text-gray-500 italic">
+                By submitting this form, you consent to us collecting and processing your personal information for the purpose of responding to your inquiry. We respect your privacy and will never share your details with third parties.
+              </div>
+              
+                  <!-- Submit Button -->
+                  <div id="submit-container" class="w-full">
+                  <!-- Social Proof -->
+                  <div class="mb-4 text-center text-sm text-gray-600">
+                    <p><i class="fas fa-check-circle text-green-500 mr-1"></i> Join 50+ UK SMEs who've transformed their business with our solutions</p>
+                  </div>
+                  
+                  <button
+                    id="submit-button"
+                    type="submit"
+                    style="display: flex; width: 100%; padding: 12px 16px; background-color: #0d8b9c; color: white; font-weight: bold; border-radius: 8px; align-items: center; justify-content: center; cursor: pointer; border: none; margin: 10px 0;"
+                    class="w-full py-3 px-4 bg-[#0d8b9c] text-white font-bold rounded-lg hover:bg-[#0a3b5c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0d8b9c] transition duration-300 flex items-center justify-center"
+                  >
+                    <span>Send Message</span>
+                    <i class="fas fa-paper-plane ml-2"></i>
+                    <span class="loading-spinner hidden ml-2"></span>
+                  </button>
+                </div>
+              </div>
+              </div>
+            </form>
+            
+                </div>
+              </form>
+              
+              <!-- reCAPTCHA Script -->
+              <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+              
+              <!-- Enable Submit Button After reCAPTCHA -->
+              <script>
+                function enableSubmitButton() {
+                  document.getElementById('submit-button').disabled = false;
+                }
+              </script>
+            </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-16 relative overflow-hidden">
+        <!-- Background pattern for visual interest -->
+        <div class="absolute inset-0" style="opacity: 0.02;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                    <pattern id="footer-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="1" fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#footer-pattern)" />
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-12 relative z-10">
+                <!-- Column 1: About Us -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <a href="#home" class="block mb-6 group" aria-label="Go to homepage">
+                        <div class="flex items-center gap-3">
+                            <img src="Logo.png" alt="WebaniseMe Logo" class="h-16 transition-transform duration-300 group-hover:scale-110">
+                            <h3 class="text-2xl font-bold"><span class="text-white">WEBANISE</span><span class="text-primary">.ME</span></h3>
+                        </div>
+                    </a>
+                    <p class="mb-6 text-gray-300 leading-relaxed">Empowering businesses with professional websites that drive growth and success. We create beautiful, responsive designs that help you stand out from the competition.</p>
+                    
+                    <!-- Social Media with animated icons -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon-link" aria-label="Visit our Facebook page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our Twitter page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-twitter text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/webanise.me?igsh=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" class="social-icon-link" aria-label="Visit our Instagram page" target="_blank" rel="noopener">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our LinkedIn page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Additional space -->
+                    <div class="mt-6 pt-6 border-t border-white border-opacity-10">
+                    </div>
+                </div>
+                
+                <!-- Column 2: Quick Links & Services -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-link text-primary mr-2"></i>
+                        <span>Quick Links</span>
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <ul class="space-y-3 mb-6">
+                            <li>
+                                <a href="#home" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="web-design-services.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Web Design</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="business-automation-solutions.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Automation</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#services" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Services</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="#results" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#blog" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#contact" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="privacy-policy.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Privacy Policy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="terms-of-service.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Terms of Service</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Industries Section -->
+                    <div class="mt-6 pt-6 border-t border-white border-opacity-10">
+                        <h4 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-industry text-primary mr-2"></i>
+                            <span>Industries</span>
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="restaurant-hospitality-automation.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Restaurants & Hospitality</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="professional-services-automation.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Professional Services</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="health-wellness-automation.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Health & Wellness</span>
+                                </a>
+                            </li>
+                            <!-- More industry links will be added here -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Column 3: Contact & Newsletter -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Contact Information -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-address-card text-primary mr-2"></i>
+                                <span>Contact Us</span>
+                            </h4>
+                            
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">United Kingdom</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">+44 20 1234 5678</p>
+                                        <p class="text-sm text-gray-400">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@webanise.me" class="text-white hover:text-primary transition duration-300">info@webanise.me</a>
+                                        <p class="text-sm text-gray-400">We respond within 24 hours</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <!-- Additional space for contact info -->
+                            <div class="mt-6"></div>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-comments text-primary mr-2"></i>
+                                <span>Get Started</span>
+                            </h4>
+                            
+                            <p class="text-gray-300 mb-4">Ready to discuss your project? We're here to help you create the perfect website for your business.</p>
+                            
+                            <!-- CTA Button -->
+                            <div class="mt-6">
+                                <a href="#contact" style="display: block; width: 100%; background-color: white; color: #0a3b5c; font-weight: bold; padding: 12px 16px; border-radius: 6px; text-align: center; text-decoration: none;" class="block w-full bg-white text-secondary hover:bg-opacity-90 font-bold py-3 px-4 rounded-md transition duration-300 text-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary">
+                                    <span style="visibility: visible; display: inline-block; color: #0a3b5c; opacity: 1;">Let's Talk About Your Project</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright & Legal -->
+            <div class="border-t border-white border-opacity-10 mt-12 pt-8 text-center text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; <span id="copyright-year">2025</span> WEBANISE.ME. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0 flex space-x-4">
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Privacy Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="scripts.js"></script>
+    
+    <script>
+        // Contact form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all service radio buttons and the industry selection div
+            const serviceRadios = document.querySelectorAll('input[name="service"]');
+            const industrySelection = document.getElementById('industry-selection');
+            
+            // Initial check in case the page loads with a selection already made
+            function checkIndustryVisibility() {
+                const isIndustrySpecific = document.getElementById('service-industry').checked;
+                if (isIndustrySpecific) {
+                    industrySelection.classList.remove('hidden');
+                    document.getElementById('industry').setAttribute('required', 'required');
+                } else {
+                    industrySelection.classList.add('hidden');
+                    document.getElementById('industry').removeAttribute('required');
+                }
+            }
+            
+            // Check initial state
+            checkIndustryVisibility();
+            
+            // Add event listeners to all service radio buttons
+            serviceRadios.forEach(radio => {
+                radio.addEventListener('change', checkIndustryVisibility);
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would normally send the form data to your server
+                // For demonstration, we'll just show the success message
+                setTimeout(() => {
+                    document.querySelector('.bg-white').classList.add('form-submitted');
+                    // Scroll to top of form container
+                    window.scrollTo({
+                        top: document.querySelector('.bg-white').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }, 500);
+            });
+        });
+    </script>
+    
+    <!-- Immediate animation initialization to ensure content visibility -->
+    <script>
+        // Immediately make all animated elements visible as a fallback
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animated class to all elements with animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(function(element) {
+                element.classList.add('animated');
+            });
+            
+            // Handle image errors
+            document.querySelectorAll('img').forEach(function(img) {
+                img.addEventListener('error', function() {
+                    // If Logo.png fails to load
+                    if (this.src.includes('Logo.png')) {
+                        this.src = 'https://via.placeholder.com/80x80/0d8b9c/ffffff?text=W';
+                        this.classList.add('bg-primary', 'rounded-full', 'p-2');
+                    } else {
+                        // For other images
+                        this.src = 'https://via.placeholder.com/300x200/eeeeee/999999?text=Image+Not+Found';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

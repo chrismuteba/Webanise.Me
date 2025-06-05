@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional website development services for UK small businesses. Choose from our affordable packages with clear pricing and no hidden fees.">
+    <meta name="keywords" content="website design services, affordable websites, UK SME websites, professional web design, web development packages, small business websites">
+    <title>Web Design Services | Webanise.me - Affordable Websites for UK SMEs</title>
+    
+    <!-- Schema.org markup for local business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Web Design",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Webanise.me",
+        "description": "Professional website development and business automation solutions for UK small businesses.",
+        "url": "https://webanise.me",
+        "telephone": "+44 20 1234 5678",
+        "email": "info@webanise.me",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "United Kingdom"
+        }
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "GBP",
+        "lowPrice": "29",
+        "highPrice": "69",
+        "offerCount": "3"
+      }
+    }
+    </script>
+    <!-- Replace CDN with minified production version -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom Tailwind colors are defined in styles.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" id="main-nav">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <img src="Logo.png" alt="WebaniseMe Logo" class="h-20">
+                        <span class="text-2xl font-bold"><span class="text-secondary">WEBANISE</span><span class="text-primary">.ME</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center">
+                                    <a href="index.html" class="nav-link text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Home</a>
+                                    <a href="web-design-services.html" class="nav-link text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors font-bold">Web Design</a>
+                                    <a href="business-automation-solutions.html" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Automation</a>
+                    
+                    <!-- Industries Dropdown -->
+                    <div class="relative ml-4 group">
+                        <button class="industries-dropdown-btn text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors flex items-center">
+                            <span>Industries</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                <a href="restaurant-hospitality-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Restaurants & Hospitality</a>
+                                <a href="professional-services-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Professional Services</a>
+                                <a href="health-wellness-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Health & Wellness</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="index.html#blog" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Blog</a>
+                    <a href="index.html#contact" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Contact</a>
+                    
+                    <!-- Theme toggle switch -->
+                    <div class="theme-switch-wrapper ml-4">
+                        <label class="theme-switch" for="theme-toggle">
+                            <input type="checkbox" id="theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                        <span class="ml-2 text-sm text-gray-700"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                            <a href="index.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Home</a>
+                            <a href="web-design-services.html" class="nav-link block py-2 text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 font-bold">Web Design</a>
+                            <a href="business-automation-solutions.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Automation</a>
+                
+                <!-- Industries Section in Mobile Menu -->
+                <div class="py-2 border-t border-gray-100 mt-2">
+                    <p class="text-sm font-semibold text-gray-500 mb-2 px-1">INDUSTRIES</p>
+                    <a href="restaurant-hospitality-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Restaurants & Hospitality</a>
+                    <a href="professional-services-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Professional Services</a>
+                    <a href="health-wellness-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Health & Wellness</a>
+                </div>
+                
+                <a href="index.html#blog" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Blog</a>
+                <a href="index.html#contact" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Contact</a>
+                
+                <!-- Mobile theme toggle -->
+                <div class="flex items-center py-2">
+                    <span class="text-gray-700 mr-2">Dark Mode</span>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="mobile-theme-toggle">
+                            <input type="checkbox" id="mobile-theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+<!-- Hero Section -->
+    <section class="hero-section text-white py-20 webdesign-hero">
+        <!-- Moving Background Image -->
+        <div class="moving-background" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80');"></div>
+        
+        <!-- Background Overlay -->
+        <div class="background-overlay"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-on-scroll hero-headline text-center px-4 md:px-0">Web Design Services</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-on-scroll hero-subheadline text-center px-4 md:px-0">Professional websites that drive business growth at prices small businesses can afford</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 animate-on-scroll text-center">
+                <a href="#pricing" class="primary-cta font-bold py-3 px-8 rounded-full transition duration-300 bg-[#2A7F83] text-white hover:bg-[#236e72] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">View Our Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Our Approach to Website Development</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                    <div class="bg-accent rounded-xl p-8 shadow-lg">
+                    <p class="text-xl text-gray-700 leading-relaxed mb-6">
+                        At Webanise.me, we combine modern web technologies with AI assistance to deliver professional, high-performing websites at affordable rates. Our approach focuses on creating websites that not only look great but also drive real business results.
+                    </p>
+                    
+                        <p class="text-xl text-gray-700 leading-relaxed">
+                            Unlike template-based solutions or expensive agencies, we hand-code each website to ensure optimal performance, better SEO rankings, and a truly unique online presence that represents your brand perfectly.
+                        </p>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Web developer working on responsive website design" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-code text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Custom Development</h3>
+                        <p class="text-gray-600">Hand-coded websites optimized for performance and search engines</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-mobile-alt text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Responsive Design</h3>
+                        <p class="text-gray-600">Websites that look and function perfectly on all devices</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-search text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">SEO Optimized</h3>
+                        <p class="text-gray-600">Built with search engines in mind to help customers find you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Website Packages</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Choose the perfect plan for your business needs with transparent pricing and no hidden fees.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Tier 1: Starter -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Starter</h3>
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£299</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£29</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Perfect for small businesses just getting started online
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>3-page responsive website</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Contact form</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Mobile optimization</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Basic SEO</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Secure hosting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>SSL certificate</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Regular backups</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Tier 2: Business -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden border-2 border-primary transform scale-105 z-10">
+                    <div class="bg-primary text-white py-2 text-center">
+                        <span class="font-bold">MOST POPULAR</span>
+                    </div>
+                    <div class="p-8 bg-gradient-to-br from-white to-accent/20">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Business</h3>
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£399</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£49</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Ideal for established businesses looking to grow online
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>5-7 pages</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced forms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Gallery section</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Social media integration</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Basic SEO</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Secure hosting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>SSL certificate</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Regular backups</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Tier 3: Growth -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Growth</h3>
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£599</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£69</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            For businesses ready to maximize their online potential
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>8-10 pages</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced forms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Blog capability</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Enhanced SEO</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Google Analytics</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Secure hosting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>SSL certificate</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Regular backups</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Why Choose Us Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Why Choose Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">We deliver more value than DIY website builders or expensive agencies</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Reason 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-code text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Professional Hand-Coded Websites</h3>
+                    <p class="text-gray-600 text-center">We don't use templates - each website is custom-built for optimal performance and unique design.</p>
+                </div>
+                
+                <!-- Reason 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-search text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Better SEO Performance</h3>
+                    <p class="text-gray-600 text-center">Our websites rank higher than DIY builders because we follow SEO best practices from the ground up.</p>
+                </div>
+                
+                <!-- Reason 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-headset text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Personalized Support</h3>
+                    <p class="text-gray-600 text-center">Get direct access to our team of experts who are committed to your online success.</p>
+                </div>
+                
+                <!-- Reason 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-laptop-code text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Technical Expertise</h3>
+                    <p class="text-gray-600 text-center">Our team has years of experience in web development, ensuring your site is built to the highest standards.</p>
+                </div>
+                
+                <!-- Reason 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll md:col-span-2 lg:col-span-1">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-rocket text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Future-Proofing</h3>
+                    <p class="text-gray-600 text-center">Our websites are built to grow with your business, with easy expansion options as your needs evolve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Work in Action</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">See examples of the professional websites we've created for businesses like yours</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Portfolio Item 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80" alt="Modern business website design" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Professional Services</h3>
+                        <p class="text-gray-600">Clean, professional design that builds trust and converts visitors into clients.</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" alt="E-commerce website design" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">E-commerce Solutions</h3>
+                        <p class="text-gray-600">User-friendly online stores that make it easy for customers to browse and buy.</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Responsive website design" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Responsive Design</h3>
+                        <p class="text-gray-600">Websites that look perfect on all devices, from desktop to mobile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-on Services Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Add-on Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Customize your website with these additional services</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Add-on 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-secondary">Additional Pages</h3>
+                        <span class="text-xl font-bold text-primary">£49<span class="text-sm">/page</span></span>
+                    </div>
+                    <p class="text-gray-600">Expand your website with additional custom-designed pages to showcase more of your business.</p>
+                </div>
+                
+                <!-- Add-on 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-secondary">Custom Contact Forms</h3>
+                        <span class="text-xl font-bold text-primary">£29<span class="text-sm">/each</span></span>
+                    </div>
+                    <p class="text-gray-600">Create specialized forms for quotes, bookings, surveys, or other specific business needs.</p>
+                </div>
+                
+                <!-- Add-on 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-secondary">Content Writing</h3>
+                        <span class="text-xl font-bold text-primary">£25<span class="text-sm">/page</span></span>
+                    </div>
+                    <p class="text-gray-600">Professional, SEO-optimized content writing to effectively communicate your message.</p>
+                </div>
+                
+                <!-- Add-on 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-secondary">Logo Design</h3>
+                        <span class="text-xl font-bold text-primary">£99</span>
+                    </div>
+                    <p class="text-gray-600">Professional logo design to establish your brand identity across all platforms.</p>
+                </div>
+                
+                <!-- Add-on 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-secondary">Google Business Profile</h3>
+                        <span class="text-xl font-bold text-primary">£49</span>
+                    </div>
+                    <p class="text-gray-600">Complete setup of your Google Business Profile to improve local search visibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Everything you need to know about our web design process</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">How long does it take to build a website?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Most websites take 2-4 weeks from start to finish, depending on the complexity and how quickly you provide content and feedback. Our Starter package can be completed in as little as 1-2 weeks, while more complex Growth package websites may take 3-4 weeks.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">Do I need to provide my own content?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">While you can provide your own content, we also offer content writing services for an additional fee. We can help create professional, SEO-optimized content for your website if you don't have the time or resources to do it yourself.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">Can I update the website myself after it's built?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Yes! We provide a user-friendly content management system that allows you to make basic updates to your website. We also offer training to help you get comfortable with making changes. For more complex updates, our ongoing support is available.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">What's included in the monthly fee?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Our monthly fee covers hosting, security updates, regular backups, technical support, and minor content updates. It ensures your website stays secure, up-to-date, and running smoothly without you having to worry about technical maintenance.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">How do you ensure my website will rank well in search engines?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">All our websites are built with SEO best practices in mind, including proper HTML structure, fast loading speeds, mobile optimization, and schema markup. We also provide basic on-page SEO for your key pages. For more advanced SEO needs, we offer additional services to help improve your rankings.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="index.html#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300 animate-on-scroll">Get Your Free Quote Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-16 relative overflow-hidden">
+        <!-- Background pattern for visual interest -->
+        <div class="absolute inset-0 opacity-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                    <pattern id="footer-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="1" fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#footer-pattern)" />
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-12 relative z-10">
+                <!-- Column 1: About Us -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <a href="index.html" class="block mb-6 group" aria-label="Go to homepage">
+                        <div class="flex items-center gap-3">
+                            <img src="Logo.png" alt="WebaniseMe Logo" class="h-16 transition-transform duration-300 group-hover:scale-110">
+                            <h3 class="text-2xl font-bold"><span class="text-white">WEBANISE</span><span class="text-primary">.ME</span></h3>
+                        </div>
+                    </a>
+                    <p class="mb-6 text-gray-300 leading-relaxed">Empowering businesses with professional websites that drive growth and success. We create beautiful, responsive designs that help you stand out from the competition.</p>
+                    
+                    <!-- Social Media with animated icons -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon-link" aria-label="Visit our Facebook page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our Twitter page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-twitter text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/webanise.me?igsh=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" class="social-icon-link" aria-label="Visit our Instagram page" target="_blank" rel="noopener">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our LinkedIn page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Quick Links & Services -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-link text-primary mr-2"></i>
+                        <span>Quick Links</span>
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <ul class="space-y-3 mb-6">
+                            <li>
+                                <a href="index.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#services" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Services</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="web-design-services.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Web Design</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#results" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="index.html#blog" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#contact" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="privacy-policy.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Privacy Policy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="terms-of-service.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Terms of Service</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Column 3: Contact & CTA -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Contact Information -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-address-card text-primary mr-2"></i>
+                                <span>Contact Us</span>
+                            </h4>
+                            
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">United Kingdom</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">+44 20 1234 5678</p>
+                                        <p class="text-sm text-gray-400">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@webanise.me" class="text-white hover:text-primary transition duration-300">info@webanise.me</a>
+                                        <p class="text-sm text-gray-400">We respond within 24 hours</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-comments text-primary mr-2"></i>
+                                <span>Get Started</span>
+                            </h4>
+                            
+                            <p class="text-gray-300 mb-4">Ready to discuss your project? We're here to help you create the perfect website for your business.</p>
+                            
+                            <!-- CTA Button -->
+                            <div class="mt-6">
+                                <a href="index.html#contact" class="block w-full bg-white text-secondary hover:bg-opacity-90 font-bold py-3 px-4 rounded-md transition duration-300 text-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary">
+                                    <span>Let's Talk About Your Project</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright & Legal -->
+            <div class="border-t border-white border-opacity-10 mt-12 pt-8 text-center text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; <span id="copyright-year">2025</span> WEBANISE.ME. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0 flex space-x-4">
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Privacy Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="scripts.js"></script>
+    
+    <!-- FAQ Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle answer visibility
+                    answer.classList.toggle('hidden');
+                    
+                    // Toggle icon rotation
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

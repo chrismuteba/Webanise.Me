@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional services automation solutions for UK accountants, lawyers, and consultants. Streamline client intake, appointment scheduling, and document workflows.">
+    <meta name="keywords" content="professional services automation, client intake automation, appointment scheduling, document workflow, client portal, practice management, accountant automation, lawyer automation, consultant automation">
+    <title>Professional Services Automation | Webanise.me - Digital Solutions for Professional Practices</title>
+    
+    <!-- Schema.org markup for service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Professional Services Automation",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Webanise.me",
+        "description": "Professional website development and business automation solutions for UK professional service firms.",
+        "url": "https://webanise.me",
+        "telephone": "+44 20 1234 5678",
+        "email": "info@webanise.me",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "United Kingdom"
+        }
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "GBP",
+        "lowPrice": "129",
+        "highPrice": "249",
+        "offerCount": "2"
+      }
+    }
+    </script>
+    <!-- Replace CDN with minified production version -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom Tailwind colors are defined in styles.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles specific to professional services */
+        .professional-hero {
+            
+        }
+        .professional-accent {
+            color: #4299e1;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" id="main-nav">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <img src="Logo.png" alt="WebaniseMe Logo" class="h-20" onerror="this.onerror=null; this.src='https://via.placeholder.com/80x80/0d8b9c/ffffff?text=W'; this.classList.add('bg-primary', 'rounded-full', 'p-2');">
+                        <span class="text-2xl font-bold"><span class="text-secondary">WEBANISE</span><span class="text-primary">.ME</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center">
+                                    <a href="index.html" class="nav-link text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Home</a>
+                                    <a href="web-design-services.html" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Web Design</a>
+                                    <a href="business-automation-solutions.html" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Automation</a>
+                    
+                    <!-- Industries Dropdown -->
+                    <div class="relative ml-4 group">
+                        <button class="industries-dropdown-btn text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors flex items-center">
+                            <span>Industries</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                <a href="restaurant-hospitality-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Restaurants & Hospitality</a>
+                                <a href="professional-services-automation.html" class="block px-4 py-2 text-sm text-[#2A7F83] hover:bg-gray-100 font-bold" role="menuitem">Professional Services</a>
+                                <a href="health-wellness-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Health & Wellness</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="index.html#blog" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Blog</a>
+                    <a href="index.html#contact" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Contact</a>
+                    
+                    <!-- Theme toggle switch -->
+                    <div class="theme-switch-wrapper ml-4">
+                        <label class="theme-switch" for="theme-toggle">
+                            <input type="checkbox" id="theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                        <span class="ml-2 text-sm text-gray-700"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                            <a href="index.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Home</a>
+                            <a href="web-design-services.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Web Design</a>
+                            <a href="business-automation-solutions.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Automation</a>
+                
+                <!-- Industries Section in Mobile Menu -->
+                <div class="py-2 border-t border-gray-100 mt-2">
+                    <p class="text-sm font-semibold text-gray-500 mb-2 px-1">INDUSTRIES</p>
+                    <a href="restaurant-hospitality-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Restaurants & Hospitality</a>
+                    <a href="professional-services-automation.html" class="nav-link block py-2 pl-4 text-[#2A7F83] font-bold focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Professional Services</a>
+                    <a href="health-wellness-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Health & Wellness</a>
+                </div>
+                
+                <a href="index.html#blog" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Blog</a>
+                <a href="index.html#contact" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Contact</a>
+                
+                <!-- Mobile theme toggle -->
+                <div class="flex items-center py-2">
+                    <span class="text-gray-700 mr-2">Dark Mode</span>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="mobile-theme-toggle">
+                            <input type="checkbox" id="mobile-theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20 professional-hero">
+        <!-- Moving Background Image with professional overlay and fallback -->
+        <div class="moving-background" style="background-image: url('professional-office-bg.jpg'), url('https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') !important;"></div>
+        
+        <!-- Background Overlay -->
+        <div class="background-overlay"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-on-scroll hero-headline text-center px-4 md:px-0">STREAMLINE YOUR PRACTICE WITH INTELLIGENT AUTOMATION</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-on-scroll hero-subheadline text-center px-4 md:px-0">Automate client intake, scheduling, and follow-ups while maintaining compliance and professionalism</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 animate-on-scroll text-center">
+                <a href="index.html#contact" class="primary-cta font-bold py-3 px-8 rounded-full transition duration-300 bg-[#2A7F83] text-white hover:bg-[#236e72] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Book a Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Digital Solutions for Modern Professional Practices</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                    <div class="bg-accent rounded-xl p-8 shadow-lg">
+                    <p class="text-xl text-gray-700 leading-relaxed mb-6">
+                        In today's competitive landscape, professional service firms need to focus on what they do best—serving clients with expertise and attention. Our automation solutions help accountants, lawyers, consultants, and other professionals streamline administrative tasks while maintaining the highest standards of compliance and professionalism.
+                    </p>
+                    
+                        <p class="text-xl text-gray-700 leading-relaxed">
+                            From client intake and appointment scheduling to document workflows and secure client communications, our systems help you save time, reduce errors, and deliver a more seamless client experience.
+                        </p>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://img.freepik.com/free-photo/businessman-using-tablet-analysis-graph-company-finance-strategy-statistics-success-concept-planning-future-office-room_74952-1410.jpg" alt="Professional using tablet and desktop dashboard software in modern office with city view" class="w-full h-auto object-contain">
+                    </div>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-user-tie text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Professional Experience</h3>
+                        <p class="text-gray-600">Maintain a professional image with sophisticated client-facing systems that reflect your expertise.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-shield-alt text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Compliance & Security</h3>
+                        <p class="text-gray-600">Built-in compliance features and secure data handling to meet professional standards and regulations.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-clock text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Time Efficiency</h3>
+                        <p class="text-gray-600">Automate routine tasks to free up more time for high-value client work and business development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Key Features for Professional Practices</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Comprehensive solutions designed for accountants, lawyers, consultants, and other professionals</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-clipboard-list text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Client Intake Automation</h3>
+                    <p class="text-gray-600 text-center">Custom intake forms that collect all necessary client information and documents before the first meeting, with automated follow-ups for missing items.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-calendar-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Intelligent Appointment Scheduling</h3>
+                    <p class="text-gray-600 text-center">Smart scheduling system with buffer times between appointments, preparation reminders, and automatic calendar integration.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-comments text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Automated Client Communication</h3>
+                    <p class="text-gray-600 text-center">Keep clients informed with automated status updates, appointment reminders, and follow-ups that maintain a professional tone.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-file-signature text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Document Workflow Automation</h3>
+                    <p class="text-gray-600 text-center">Streamline document preparation, review, and approval processes with automated workflows and electronic signature requests.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-lock text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Secure Client Portal</h3>
+                    <p class="text-gray-600 text-center">Provide clients with a secure portal for document sharing, messaging, and accessing their case or project information.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-tasks text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Follow-up Sequences</h3>
+                    <p class="text-gray-600 text-center">Automated follow-up sequences for consultations and proposals that help convert prospects into clients without constant manual effort.</p>
+                </div>
+                
+                <!-- Feature 7 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 md:col-span-2 lg:col-span-1">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-clipboard-check text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Compliance-Friendly Communication Logs</h3>
+                    <p class="text-gray-600 text-center">Maintain detailed logs of all client communications and document exchanges to ensure compliance with industry regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Pricing Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Professional Services Pricing</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Affordable solutions designed specifically for professional service firms</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Package 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Professional Website + Client Intake System</h3>
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£399</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£129</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Perfect for professional practices just getting started with automation
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Professional website with industry-specific design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Custom client intake forms</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Basic appointment scheduling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Document upload capabilities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Client database building</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Mobile-friendly design</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Basic SEO optimization</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Package 2 -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden border-2 border-primary transform scale-105 z-10">
+                    <div class="bg-primary text-white py-2 text-center">
+                        <span class="font-bold">RECOMMENDED</span>
+                    </div>
+                    <div class="p-8 bg-gradient-to-br from-white to-accent/20">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Complete Practice Management System</h3>
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£599</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£249</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Comprehensive solution for established professional practices
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Everything in Basic package</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced appointment scheduling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Secure client portal</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Document workflow automation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Electronic signature integration</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Automated follow-up sequences</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Compliance-friendly communication logs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced SEO & local optimization</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-4">Not sure which package is right for your practice?</p>
+                <a href="index.html#contact" class="inline-block bg-secondary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary transition duration-300 animate-on-scroll">Book a Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Common questions from professional service providers</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">How does the client intake automation work?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Our client intake system creates custom forms that collect all necessary information and documents from new clients. The system automatically follows up on missing information, schedules initial consultations, and organizes all client data in a structured format that integrates with your existing systems. This eliminates manual data entry and ensures you have all the information you need before the first meeting.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">Is the system compliant with industry regulations?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Yes, our systems are designed with compliance in mind. We implement industry-standard security measures, maintain detailed audit trails of all communications and document exchanges, and ensure data is stored securely. The system can be configured to meet specific regulatory requirements for different professional services, including GDPR compliance for UK businesses.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">Can I integrate with my existing practice management software?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Yes, our system is designed to integrate with most popular practice management software. We have pre-built integrations for common platforms used by accountants, lawyers, and consultants. For specialized systems, we can build custom integrations to ensure seamless data flow between systems.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">How secure is the client portal?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Our client portal uses bank-level encryption for all data transmission and storage. We implement multi-factor authentication, role-based access controls, and detailed access logs. All documents are encrypted both in transit and at rest, ensuring that sensitive client information remains secure. The system also allows you to set document expiration dates and revoke access when needed.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-question w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                        <span class="text-lg font-semibold text-gray-800">How long does implementation take?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-answer px-6 py-4 hidden">
+                        <p class="text-gray-600">Implementation typically takes 3-4 weeks for the basic package and 4-6 weeks for the complete practice management system. This includes customization of forms and workflows to match your specific practice needs, integration with existing systems, and training for your team. We provide a detailed implementation timeline during your initial consultation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="index.html#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300 animate-on-scroll">Have More Questions? Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-16 relative overflow-hidden">
+        <!-- Background pattern for visual interest -->
+        <div class="absolute inset-0 opacity-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                    <pattern id="footer-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="1" fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#footer-pattern)" />
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-12 relative z-10">
+                <!-- Column 1: About Us -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <a href="index.html" class="block mb-6 group" aria-label="Go to homepage">
+                        <div class="flex items-center gap-3">
+                            <img src="Logo.png" alt="WebaniseMe Logo" class="h-16 transition-transform duration-300 group-hover:scale-110">
+                            <h3 class="text-2xl font-bold"><span class="text-white">WEBANISE</span><span class="text-primary">.ME</span></h3>
+                        </div>
+                    </a>
+                    <p class="mb-6 text-gray-300 leading-relaxed">Empowering professional service firms with sophisticated websites and intelligent automation that drive growth and efficiency. We create solutions that help you focus on what matters most—serving your clients.</p>
+                    
+                    <!-- Social Media with animated icons -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon-link" aria-label="Visit our Facebook page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our Twitter page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-twitter text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/webanise.me?igsh=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" class="social-icon-link" aria-label="Visit our Instagram page" target="_blank" rel="noopener">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our LinkedIn page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Quick Links & Services -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-link text-primary mr-2"></i>
+                        <span>Quick Links</span>
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <ul class="space-y-3 mb-6">
+                            <li>
+                                <a href="index.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#services" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Services</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="web-design-services.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Web Design</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="business-automation-solutions.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Automation</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="restaurant-hospitality-automation.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Restaurants</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="professional-services-automation.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Professional Services</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="health-wellness-automation.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Health & Wellness</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#results" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#blog" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#contact" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Column 3: Contact & CTA -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Contact Information -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-address-card text-primary mr-2"></i>
+                                <span>Contact Us</span>
+                            </h4>
+                            
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">United Kingdom</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">+44 20 1234 5678</p>
+                                        <p class="text-sm text-gray-400">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@webanise.me" class="text-white hover:text-primary transition duration-300">info@webanise.me</a>
+                                        <p class="text-sm text-gray-400">We respond within 24 hours</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-comments text-primary mr-2"></i>
+                                <span>Get Started</span>
+                            </h4>
+                            
+                            <p class="text-gray-300 mb-4">Ready to streamline your practice? We're here to help you create the perfect automation solution for your professional services firm.</p>
+                            
+                            <!-- CTA Button -->
+                            <div class="mt-6">
+                                <a href="index.html#contact" class="block w-full bg-white text-secondary hover:bg-opacity-90 font-bold py-3 px-4 rounded-md transition duration-300 text-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary">
+                                    <span>Book Your Free Consultation</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright & Legal -->
+            <div class="border-t border-white border-opacity-10 mt-12 pt-8 text-center text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; <span id="copyright-year">2025</span> WEBANISE.ME. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0 flex space-x-4">
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Privacy Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="scripts.js"></script>
+    
+    <!-- FAQ Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle answer visibility
+                    answer.classList.toggle('hidden');
+                    
+                    // Toggle icon rotation
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

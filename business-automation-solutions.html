@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Powerful business automation solutions for UK small businesses. Streamline operations, increase revenue, and improve customer experience with our Hexona automation services.">
+    <meta name="keywords" content="business automation, workflow automation, UK SME automation, customer journey automation, email automation, appointment scheduling, lead capture, business process automation">
+    <title>Business Automation Solutions | Webanise.me - Automation for UK SMEs</title>
+    
+    <!-- Schema.org markup for service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Business Automation",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Webanise.me",
+        "description": "Professional website development and business automation solutions for UK small businesses.",
+        "url": "https://webanise.me",
+        "telephone": "+44 20 1234 5678",
+        "email": "info@webanise.me",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "United Kingdom"
+        }
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "GBP",
+        "lowPrice": "99",
+        "highPrice": "349",
+        "offerCount": "3"
+      }
+    }
+    </script>
+    <!-- Replace CDN with minified production version -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom Tailwind colors are defined in styles.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" id="main-nav">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <img src="Logo.png" alt="WebaniseMe Logo" class="h-20">
+                        <span class="text-2xl font-bold"><span class="text-secondary">WEBANISE</span><span class="text-primary">.ME</span></span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center">
+                                    <a href="index.html" class="nav-link text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Home</a>
+                                    <a href="web-design-services.html" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Web Design</a>
+                                    <a href="business-automation-solutions.html" class="nav-link text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors font-bold">Automation</a>
+                    
+                    <!-- Industries Dropdown -->
+                    <div class="relative ml-4 group">
+                        <button class="industries-dropdown-btn text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors flex items-center">
+                            <span>Industries</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
+                            <div class="py-1" role="menu" aria-orientation="vertical">
+                                <a href="restaurant-hospitality-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Restaurants & Hospitality</a>
+                                <a href="professional-services-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Professional Services</a>
+                                <a href="health-wellness-automation.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Health & Wellness</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="index.html#blog" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Blog</a>
+                    <a href="index.html#contact" class="nav-link text-gray-700 hover:text-[#2A7F83] ml-4 focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 transition-colors">Contact</a>
+                    
+                    <!-- Theme toggle switch -->
+                    <div class="theme-switch-wrapper ml-4">
+                        <label class="theme-switch" for="theme-toggle">
+                            <input type="checkbox" id="theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                        <span class="ml-2 text-sm text-gray-700"><i class="fas fa-moon"></i></span>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                            <a href="index.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Home</a>
+                            <a href="web-design-services.html" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Web Design</a>
+                            <a href="business-automation-solutions.html" class="nav-link block py-2 text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2 font-bold">Automation</a>
+                
+                <!-- Industries Section in Mobile Menu -->
+                <div class="py-2 border-t border-gray-100 mt-2">
+                    <p class="text-sm font-semibold text-gray-500 mb-2 px-1">INDUSTRIES</p>
+                    <a href="restaurant-hospitality-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Restaurants & Hospitality</a>
+                    <a href="professional-services-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Professional Services</a>
+                    <a href="health-wellness-automation.html" class="nav-link block py-2 pl-4 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Health & Wellness</a>
+                </div>
+                
+                <a href="index.html#blog" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Blog</a>
+                <a href="index.html#contact" class="nav-link block py-2 text-gray-700 hover:text-[#2A7F83] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">Contact</a>
+                
+                <!-- Mobile theme toggle -->
+                <div class="flex items-center py-2">
+                    <span class="text-gray-700 mr-2">Dark Mode</span>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="mobile-theme-toggle">
+                            <input type="checkbox" id="mobile-theme-toggle" />
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+<!-- Hero Section -->
+    <section class="hero-section text-white py-20 business-hero">
+        <!-- Moving Background Image -->
+        <div class="moving-background" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') !important;"></div>
+        
+        <!-- Background Overlay -->
+        <div class="background-overlay"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-on-scroll hero-headline text-center px-4 md:px-0">BUSINESS AUTOMATION THAT WORKS WHILE YOU SLEEP</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-on-scroll hero-subheadline text-center px-4 md:px-0">Streamline operations, increase revenue, and deliver exceptional customer experiences with our Hexona automation solutions</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 animate-on-scroll text-center">
+                <a href="#packages" class="primary-cta font-bold py-3 px-8 rounded-full transition duration-300 bg-[#2A7F83] text-white hover:bg-[#236e72] focus:outline-none focus:ring-2 focus:ring-[#2A7F83] focus:ring-offset-2">View Automation Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Automation for Small Businesses</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                    <div class="bg-accent rounded-xl p-8 shadow-lg">
+                    <p class="text-xl text-gray-700 leading-relaxed mb-6">
+                        In today's fast-paced business environment, automation is no longer a luxury—it's a necessity. Our Hexona automation solutions help small businesses like yours save time, reduce errors, and deliver exceptional customer experiences without requiring a large team.
+                    </p>
+                    
+                        <p class="text-xl text-gray-700 leading-relaxed">
+                            From capturing leads and automating follow-ups to managing complex customer journeys and integrating with your existing systems, our automation solutions work 24/7 so you don't have to.
+                        </p>
+                    </div>
+                    
+                    <div class="rounded-xl overflow-hidden shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Business automation dashboard showing workflow processes" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-clock text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Save Time</h3>
+                        <p class="text-gray-600">Automate repetitive tasks and free up your team to focus on what matters most—growing your business.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-pound-sign text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Increase Revenue</h3>
+                        <p class="text-gray-600">Never miss a lead or opportunity with automated follow-ups and customer journey management.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-smile text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary mb-3">Improve Experience</h3>
+                        <p class="text-gray-600">Deliver consistent, personalized customer experiences that build loyalty and drive referrals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Automation Packages Section -->
+    <section id="packages" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Our Automation Packages</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Choose the perfect automation solution for your business needs</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Package 1: Basic Automation -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Basic Automation</h3>
+                        <div class="flex items-end mb-6">
+                            <span class="text-4xl font-bold text-primary">£99</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Perfect for small businesses just getting started with automation
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Online form automation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Email follow-ups</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Lead capture</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>250 emails per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>50 SMS per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Basic reporting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Email support</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Package 2: Business Automation -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden border-2 border-primary transform scale-105 z-10">
+                    <div class="bg-primary text-white py-2 text-center">
+                        <span class="font-bold">MOST POPULAR</span>
+                    </div>
+                    <div class="p-8 bg-gradient-to-br from-white to-accent/20">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Business Automation</h3>
+                        <div class="flex items-end mb-6">
+                            <span class="text-4xl font-bold text-primary">£199</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Ideal for growing businesses looking to streamline operations
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>All Basic features</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Customer journey automation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Appointment scheduling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Review management</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>1,000 emails per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>250 SMS per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced reporting</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Priority email & phone support</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Package 3: Complete Automation -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <h3 class="text-2xl font-bold text-secondary mb-2">Complete Automation</h3>
+                        <div class="flex items-end mb-6">
+                            <span class="text-4xl font-bold text-primary">£349</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            For businesses ready to fully automate their operations
+                        </div>
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>All Business features</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced workflows</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Custom integrations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Online payments</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>3,000 emails per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>500 SMS per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Custom reporting dashboards</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Dedicated account manager</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Bundle Packages Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Bundle & Save</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Combine our website and automation services for maximum value</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Bundle 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="bg-accent text-secondary py-2 text-center">
+                        <span class="font-bold">STARTER BUNDLE</span>
+                    </div>
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-secondary">Website Starter</h3>
+                                <p class="text-gray-600">+</p>
+                                <h3 class="text-xl font-bold text-secondary">Basic Automation</h3>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-green-100 text-green-800 text-sm font-bold px-3 py-1 rounded-full">
+                                    SAVE £9/month
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£299</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£119</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Perfect for small businesses just getting started online
+                        </div>
+                        
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>3-page responsive website</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Online form automation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Email follow-ups</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Lead capture</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>250 emails per month</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Bundle 2 -->
+                <div class="bg-white rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden border-2 border-primary transform scale-105 z-10">
+                    <div class="bg-primary text-white py-2 text-center">
+                        <span class="font-bold">MOST POPULAR</span>
+                    </div>
+                    <div class="p-8 bg-gradient-to-br from-white to-accent/20">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-secondary">Website Business</h3>
+                                <p class="text-gray-600">+</p>
+                                <h3 class="text-xl font-bold text-secondary">Business Automation</h3>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-green-100 text-green-800 text-sm font-bold px-3 py-1 rounded-full">
+                                    SAVE £19/month
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£399</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£229</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            Ideal for established businesses looking to grow online
+                        </div>
+                        
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>5-7 page website</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Customer journey automation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Appointment scheduling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Review management</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>1,000 emails per month</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Bundle 3 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-200">
+                    <div class="bg-accent text-secondary py-2 text-center">
+                        <span class="font-bold">GROWTH BUNDLE</span>
+                    </div>
+                    <div class="p-8 bg-gradient-to-br from-white to-gray-50">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-secondary">Website Growth</h3>
+                                <p class="text-gray-600">+</p>
+                                <h3 class="text-xl font-bold text-secondary">Complete Automation</h3>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-green-100 text-green-800 text-sm font-bold px-3 py-1 rounded-full">
+                                    SAVE £29/month
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-end mb-2">
+                            <span class="text-4xl font-bold text-primary">£599</span>
+                            <span class="text-gray-600 ml-1">setup</span>
+                        </div>
+                        <div class="flex items-end mb-6">
+                            <span class="text-2xl font-bold text-primary">£399</span>
+                            <span class="text-gray-600 ml-1">/month</span>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                            For businesses ready to maximize their online potential
+                        </div>
+                        
+                        <ul class="space-y-3 my-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>8-10 page website</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Advanced workflows</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Custom integrations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>Online payments</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>3,000 emails per month</span>
+                            </li>
+                        </ul>
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automation Showcase Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">Automation in Action</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">See how our automation solutions transform businesses across different industries</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Showcase Item 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Business automation dashboard" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Lead Management</h3>
+                        <p class="text-gray-600">Automated lead capture and nurturing that converts prospects into customers 24/7.</p>
+                    </div>
+                </div>
+                
+                <!-- Showcase Item 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Customer service automation" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Customer Support</h3>
+                        <p class="text-gray-600">Intelligent chatbots and automated responses that provide instant customer support.</p>
+                    </div>
+                </div>
+                
+                <!-- Showcase Item 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80" alt="Marketing automation workflows" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-2">Marketing Workflows</h3>
+                        <p class="text-gray-600">Personalized marketing campaigns that engage customers at the perfect moment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Custom Automation Solutions Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">CUSTOM AUTOMATION SOLUTIONS FOR UNIQUE BUSINESS NEEDS</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Every business is unique. If our standard packages don't perfectly fit your requirements, our custom automation solutions are tailored to your specific workflows and challenges.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Left Column: Process -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-secondary mb-6">Our Custom Approach</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-700 mb-2">Consultation</h4>
+                                <p class="text-gray-600">We start with a thorough consultation to understand your business processes, pain points, and goals.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-700 mb-2">Identify Opportunities</h4>
+                                <p class="text-gray-600">Our experts identify key automation opportunities that will deliver the most value for your business.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-700 mb-2">Custom Development</h4>
+                                <p class="text-gray-600">We develop custom workflows and integrations designed specifically for your operations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                                <span class="font-bold">4</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-700 mb-2">Implementation & Support</h4>
+                                <p class="text-gray-600">We implement your custom solution and provide ongoing support to ensure it continues to deliver results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Examples & Pricing -->
+                <div>
+                    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                        <h3 class="text-2xl font-bold text-secondary mb-6">Example Custom Solutions</h3>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-cog text-primary mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Custom CRM integrations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-cog text-primary mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Specialized industry software connections</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-cog text-primary mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Complex multi-step workflows</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-cog text-primary mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Custom reporting dashboards</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-cog text-primary mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Unique customer journey automations</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-accent rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-secondary mb-4">Custom Solution Pricing</h3>
+                        <p class="text-gray-700 mb-6">Custom solutions starting from <span class="text-primary font-bold text-2xl">£249</span>/month</p>
+                        <p class="text-gray-700 mb-6">Includes consultation, setup, and ongoing support</p>
+                        
+                        <a href="index.html#contact" class="block w-full bg-primary text-white text-center font-bold py-3 px-6 rounded-lg hover:bg-secondary transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Book a Free Consultation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800 animate-on-scroll">How Automation Benefits Your Business</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">Discover how our automation solutions can transform your business operations</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Benefit 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-clock text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Save 10+ Hours Per Week</h3>
+                    <p class="text-gray-600 text-center">Automate repetitive tasks like data entry, follow-ups, and appointment scheduling to free up valuable time for you and your team.</p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-check text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Never Miss a Lead</h3>
+                    <p class="text-gray-600 text-center">Automatically capture and follow up with every lead, ensuring no opportunity falls through the cracks, even outside business hours.</p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-chart-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Increase Conversion Rates</h3>
+                    <p class="text-gray-600 text-center">Timely, personalized follow-ups and nurturing sequences can increase your conversion rates by up to 50%.</p>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-smile text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Enhance Customer Experience</h3>
+                    <p class="text-gray-600 text-center">Deliver consistent, personalized experiences at every touchpoint, building stronger relationships with your customers.</p>
+                </div>
+                
+                <!-- Benefit 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-tasks text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Reduce Errors</h3>
+                    <p class="text-gray-600 text-center">Eliminate human error from repetitive tasks, ensuring consistent quality and accuracy in your business processes.</p>
+                </div>
+                
+                <!-- Benefit 6 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-expand-arrows-alt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-secondary mb-3 text-center">Scale With Ease</h3>
+                    <p class="text-gray-600 text-center">Grow your business without proportionally increasing your workload or staff, handling more customers with the same resources.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="index.html#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300 animate-on-scroll">Start Automating Today</a>
+            </div>
+        </div>
+<!-- Footer -->
+    <footer class="bg-secondary text-white py-16 relative overflow-hidden">
+        <!-- Background pattern for visual interest -->
+        <div class="absolute inset-0 opacity-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <defs>
+                    <pattern id="footer-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="1" fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#footer-pattern)" />
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-8">
+            <!-- Main Footer Content -->
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-12 relative z-10">
+                <!-- Column 1: About Us -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <a href="index.html" class="block mb-6 group" aria-label="Go to homepage">
+                        <div class="flex items-center gap-3">
+                            <img src="Logo.png" alt="WebaniseMe Logo" class="h-16 transition-transform duration-300 group-hover:scale-110">
+                            <h3 class="text-2xl font-bold"><span class="text-white">WEBANISE</span><span class="text-primary">.ME</span></h3>
+                        </div>
+                    </a>
+                    <p class="mb-6 text-gray-300 leading-relaxed">Empowering businesses with professional websites and powerful automation that drive growth and success. We create solutions that help you stand out from the competition.</p>
+                    
+                    <!-- Social Media with animated icons -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon-link" aria-label="Visit our Facebook page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-facebook-f text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our Twitter page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-twitter text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="https://www.instagram.com/webanise.me?igsh=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" class="social-icon-link" aria-label="Visit our Instagram page" target="_blank" rel="noopener">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-instagram text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="social-icon-link" aria-label="Visit our LinkedIn page">
+                            <div class="w-10 h-10 rounded-full bg-white bg-opacity-10 flex items-center justify-center group transition-all duration-300 hover:bg-primary">
+                                <i class="fab fa-linkedin-in text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Quick Links & Services -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2">
+                    <h4 class="text-xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-link text-primary mr-2"></i>
+                        <span>Quick Links</span>
+                    </h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <ul class="space-y-3 mb-6">
+                            <li>
+                                <a href="index.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#services" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Services</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="web-design-services.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Web Design</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="business-automation-solutions.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Automation</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="index.html#results" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#blog" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#contact" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Contact</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="privacy-policy.html" class="text-gray-300 hover:text-white transition duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">
+                                    <i class="fas fa-chevron-right text-xs text-primary mr-2"></i>
+                                    <span>Privacy Policy</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Column 3: Contact & CTA -->
+                <div class="bg-opacity-10 bg-white p-6 rounded-lg shadow-lg transform transition-all duration-500 hover:-translate-y-2 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Contact Information -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-address-card text-primary mr-2"></i>
+                                <span>Contact Us</span>
+                            </h4>
+                            
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">United Kingdom</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone-alt text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-white">+44 20 1234 5678</p>
+                                        <p class="text-sm text-gray-400">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="mt-1 mr-3 w-8 h-8 rounded-full bg-primary bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:info@webanise.me" class="text-white hover:text-primary transition duration-300">info@webanise.me</a>
+                                        <p class="text-sm text-gray-400">We respond within 24 hours</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div>
+                            <h4 class="text-xl font-bold mb-6 flex items-center">
+                                <i class="fas fa-comments text-primary mr-2"></i>
+                                <span>Get Started</span>
+                            </h4>
+                            
+                            <p class="text-gray-300 mb-4">Ready to automate your business processes? We're here to help you create the perfect automation solution.</p>
+                            
+                            <!-- CTA Button -->
+                            <div class="mt-6">
+                                <a href="index.html#contact" class="block w-full bg-white text-secondary hover:bg-opacity-90 font-bold py-3 px-4 rounded-md transition duration-300 text-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary">
+                                    <span>Book Your Free Consultation</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright & Legal -->
+            <div class="border-t border-white border-opacity-10 mt-12 pt-8 text-center text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p>&copy; <span id="copyright-year">2025</span> WEBANISE.ME. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0 flex space-x-4">
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Privacy Policy</a>
+                        <span class="text-gray-600">|</span>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary rounded-md">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+    </section>

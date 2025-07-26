@@ -144,102 +144,74 @@ document.addEventListener('DOMContentLoaded', function() {
     const industriesDropdown = document.querySelector('.industries-dropdown-btn');
     const industriesDropdownContent = document.querySelector('.group .dropdown-menu');
     
-    // Initialize dropdown state (declare outside the if block for global access)
-    let isDropdownOpen = false;
-    
     if (industriesDropdown && industriesDropdownContent) {
+        let isDropdownOpen = false;
         
-        // Show dropdown on click (for touch devices and desktop)
+        // Toggle dropdown on button click
         industriesDropdown.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation(); // Prevent navigation
+            e.stopPropagation();
             
-            // Toggle dropdown visibility
-            if (!isDropdownOpen) {
+            isDropdownOpen = !isDropdownOpen;
+            
+            if (isDropdownOpen) {
                 industriesDropdownContent.style.display = 'block';
                 industriesDropdownContent.classList.add('dropdown-active');
-                isDropdownOpen = true;
             } else {
                 industriesDropdownContent.style.display = 'none';
                 industriesDropdownContent.classList.remove('dropdown-active');
-                isDropdownOpen = false;
             }
             
             // Toggle chevron rotation
             const chevron = this.querySelector('i');
             if (chevron) {
-                chevron.classList.toggle('rotate-180');
+                chevron.classList.toggle('rotate-180', isDropdownOpen);
             }
         });
         
-        // Handle clicking on dropdown items
-        const dropdownLinks = industriesDropdownContent.querySelectorAll('a');
-        dropdownLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // We want the link to work, but we need to update the dropdown state
-                // so it can be reopened later
-                setTimeout(() => {
-                    isDropdownOpen = false;
-                    industriesDropdownContent.style.display = 'none';
-                    industriesDropdownContent.classList.remove('dropdown-active');
-                }, 100);
-            });
-        });
-        
-        // Hide dropdown when clicking outside, but not on other navigation items
+        // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
-            // Check if the click is outside the dropdown AND not on another navigation item
-            const isClickOutsideDropdown = !industriesDropdown.contains(e.target) && !industriesDropdownContent.contains(e.target);
-            
-            // Only close the dropdown if clicking outside
-            if (isClickOutsideDropdown) {
+            if (!industriesDropdown.contains(e.target) && !industriesDropdownContent.contains(e.target)) {
+                isDropdownOpen = false;
                 industriesDropdownContent.style.display = 'none';
                 industriesDropdownContent.classList.remove('dropdown-active');
-                isDropdownOpen = false;
                 
-                // Reset chevron rotation
                 const chevron = industriesDropdown.querySelector('i');
                 if (chevron) {
                     chevron.classList.remove('rotate-180');
                 }
             }
         });
-    
-        // Ensure dropdown is closed when navigating to other pages (but not the Industries button itself)
+        
+        // Close dropdown when clicking on a dropdown link
+        const dropdownLinks = industriesDropdownContent.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                isDropdownOpen = false;
+                industriesDropdownContent.style.display = 'none';
+                industriesDropdownContent.classList.remove('dropdown-active');
+                
+                const chevron = industriesDropdown.querySelector('i');
+                if (chevron) {
+                    chevron.classList.remove('rotate-180');
+                }
+            });
+        });
+        
+        // Close dropdown when clicking other nav links
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(navLink => {
-            navLink.addEventListener('click', function(e) {
-                // Only close dropdown if this is not the Industries button
+            navLink.addEventListener('click', function() {
                 if (!navLink.closest('.group')) {
+                    isDropdownOpen = false;
                     industriesDropdownContent.style.display = 'none';
                     industriesDropdownContent.classList.remove('dropdown-active');
-                    isDropdownOpen = false;
                     
-                    // Reset chevron rotation
                     const chevron = industriesDropdown.querySelector('i');
                     if (chevron) {
                         chevron.classList.remove('rotate-180');
                     }
                 }
-            });
-        });
-    
-        // Fix for dropdown freezing on specific items
-        dropdownLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Allow the link to navigate normally
-                // Close dropdown after a short delay to allow navigation
-                setTimeout(() => {
-                    industriesDropdownContent.style.display = 'none';
-                    industriesDropdownContent.classList.remove('dropdown-active');
-                    isDropdownOpen = false;
-                    
-                    // Reset chevron rotation
-                    const chevron = industriesDropdown.querySelector('i');
-                    if (chevron) {
-                        chevron.classList.remove('rotate-180');
-                    }
-                }, 50);
             });
         });
     }
@@ -622,6 +594,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
+    
+    // Initialize scroll animations
+    setupScrollAnimations();
+    
+    // Initialize theme switcher
+    setupThemeSwitcher();
+    
+    // Initialize scroll to top button
+    setupScrollToTop();
 });
 
 function showError(input, message) {
@@ -654,6 +635,22 @@ function setupScrollAnimations() {
     animatedElements.forEach(el => {
         observer.observe(el);
     });
+    
+    // Add animation for footer
+    const footerContainer = document.querySelector('footer .container');
+    if (footerContainer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        footerObserver.observe(footerContainer);
+    }
 }
 
 function setupThemeSwitcher() {
@@ -692,18 +689,16 @@ function setupThemeSwitcher() {
 }
 
 function setupScrollToTop() {
-    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    const scrollToTopBtn = document.getElementById('scrollTop');
     
     if (!scrollToTopBtn) return;
     
     // Show/hide button based on scroll position
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
-            scrollToTopBtn.classList.remove('hidden');
-            scrollToTopBtn.classList.add('flex');
+            scrollToTopBtn.classList.add('visible');
         } else {
-            scrollToTopBtn.classList.remove('flex');
-            scrollToTopBtn.classList.add('hidden');
+            scrollToTopBtn.classList.remove('visible');
         }
     });
     
@@ -800,7 +795,7 @@ function setupBlog() {
                             <p class="text-sm text-gray-500 mb-2">${formattedDate}</p>
                             <h3 class="text-xl font-bold text-secondary mb-2">${title}</h3>
                             <p class="text-gray-600 mb-4">${excerpt}</p>
-                            <span class="inline-block text-primary font-bold hover:underline">Read More →</span>
+                            <span class="text-primary font-semibold hover:underline">Read More →</span>
                         </div>
                     </a>
                 </div>
@@ -810,77 +805,13 @@ function setupBlog() {
         blogPostsContainer.innerHTML = postsHTML;
     }
     
-    // Load blog posts with pagination
-    async function loadBlogPosts(page = 1) {
-        // Show loading indicator
-        blogPostsContainer.innerHTML = `
-            <div class="text-center py-12">
-                <i class="fas fa-spinner fa-spin text-3xl text-primary"></i>
-                <p class="mt-2 text-gray-600">Loading blog posts...</p>
-            </div>
-        `;
-        
-        const { posts, assets, total } = await fetchBlogPosts(page);
-        
-        // Render posts
-        renderBlogPosts(posts, assets);
-        
-        // Setup pagination if needed
-        if (blogPagination && total > 0) {
-            const pageSize = 6;
-            const totalPages = Math.ceil(total / pageSize);
-            
-            let paginationHTML = '';
-            
-            // Previous button
-            paginationHTML += `
-                <button class="pagination-btn px-4 py-2 rounded-lg border ${page === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'}" 
-                    ${page === 1 ? 'disabled' : 'data-page="' + (page - 1) + '"'}>
-                    <i class="fas fa-chevron-left mr-1"></i> Previous
-                </button>
-            `;
-            
-            // Page numbers
-            for (let i = 1; i <= totalPages; i++) {
-                paginationHTML += `
-                    <button class="pagination-btn px-4 py-2 rounded-lg border ${i === page ? 'bg-primary text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}" 
-                        data-page="${i}">
-                        ${i}
-                    </button>
-                `;
-            }
-            
-            // Next button
-            paginationHTML += `
-                <button class="pagination-btn px-4 py-2 rounded-lg border ${page === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 hover:bg-gray-50'}" 
-                    ${page === totalPages ? 'disabled' : 'data-page="' + (page + 1) + '"'}>
-                    Next <i class="fas fa-chevron-right ml-1"></i>
-                </button>
-            `;
-            
-            blogPagination.innerHTML = paginationHTML;
-            
-            // Add event listeners to pagination buttons
-            document.querySelectorAll('.pagination-btn:not([disabled])').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const newPage = parseInt(e.currentTarget.getAttribute('data-page'));
-                    loadBlogPosts(newPage);
-                    
-                    // Scroll back to top of blog section
-                    document.querySelector('#blog').scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        }
-    }
-    
-    // Initial load
-    loadBlogPosts(1);
+    // Initialize blog
+    fetchBlogPosts().then(data => {
+        renderBlogPosts(data.posts, data.assets);
+    });
 }
 
-// Initialize features when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    setupScrollAnimations();
-    setupThemeSwitcher();
-    setupScrollToTop();
+// Initialize blog if on blog page
+if (document.getElementById('blog-posts')) {
     setupBlog();
-});
+}

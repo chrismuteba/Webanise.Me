@@ -18,7 +18,7 @@ body > footer {
     visibility: visible !important;
     opacity: 1 !important;
     height: auto !important;
-    min-height: 300px !important;
+    min-height: 200px !important;
     z-index: 50 !important;
     background-color: #0a3b5c !important;
     position: relative !important;
@@ -34,6 +34,7 @@ body > footer .grid {
     display: grid !important;
     visibility: visible !important;
     opacity: 1 !important;
+    gap: 1rem !important;
 }
 
 body > footer .bg-opacity-10 {
@@ -41,6 +42,7 @@ body > footer .bg-opacity-10 {
     visibility: visible !important;
     opacity: 1 !important;
     display: block !important;
+    padding: 0.75rem !important;
 }
 
 body > footer p,
@@ -64,11 +66,14 @@ body > footer i {
     transform: rotate(180deg);
 }
 
-/* For hover effect on desktop */
-@media (min-width: 768px) {
-    .group:hover .dropdown-menu {
-        display: block;
-    }
+/* Dropdown menu is now controlled entirely by JavaScript */
+.dropdown-menu {
+    display: none;
+    z-index: 50;
+}
+
+.dropdown-menu.dropdown-active {
+    display: block !important;
 }
 
 /* Hero section with moving background */
@@ -256,8 +261,8 @@ body > footer i {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
-    /* Failsafe: Make elements visible after 2 seconds regardless of animation */
-    animation: forceVisible 2s forwards 2s;
+    /* Reduced failsafe delay to match home page timing */
+    animation: forceVisible 0.6s forwards 0.2s;
 }
 
 @keyframes forceVisible {
@@ -273,7 +278,7 @@ body > footer i {
     animation: none; /* Cancel the forceVisible animation if element is properly animated */
 }
 
-/* Staggered animation delays for lists */
+/* Staggered animation delays for lists - faster timing to match home page */
 .stagger-animation > *:nth-child(1) { transition-delay: 0.1s; }
 .stagger-animation > *:nth-child(2) { transition-delay: 0.2s; }
 .stagger-animation > *:nth-child(3) { transition-delay: 0.3s; }
@@ -281,7 +286,7 @@ body > footer i {
 .stagger-animation > *:nth-child(5) { transition-delay: 0.5s; }
 .stagger-animation > *:nth-child(6) { transition-delay: 0.6s; }
 
-/* Hero section specific animations */
+/* Hero section specific animations - keeping same timing for consistency */
 #home .container .animate-on-scroll:nth-child(1) {
     transition-delay: 0.2s;
 }
@@ -291,6 +296,19 @@ body > footer i {
 }
 
 #home .container .animate-on-scroll:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
+/* Apply same fast timing to all hero sections on other pages */
+.hero-section .container .animate-on-scroll:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+.hero-section .container .animate-on-scroll:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.hero-section .container .animate-on-scroll:nth-child(3) {
     transition-delay: 0.6s;
 }
 
@@ -1596,4 +1614,80 @@ footer .container.animated {
 .dark-mode .prose code {
     color: #38b2ac;
     background-color: #374151;
+}
+
+/* Enhanced Contact Panel Styling */
+.contact-panel {
+    position: relative;
+    background: linear-gradient(135deg, #0d8b9c 0%, #0a3b5c 100%) !important;
+    box-shadow: 0 20px 40px rgba(13, 139, 156, 0.3);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.contact-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 50px rgba(13, 139, 156, 0.4);
+}
+
+/* Contact panel decorative elements */
+.contact-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Enhanced contact icons */
+.contact-panel .contact-icon {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-panel .contact-icon:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Ensure content is above decorative elements */
+.contact-panel .relative.z-10 {
+    position: relative;
+    z-index: 10;
+}
+
+/* Contact panel responsive improvements */
+@media (max-width: 768px) {
+    .contact-panel {
+        margin-bottom: 2rem;
+    }
+    
+    .contact-panel::before {
+        animation: none; /* Disable animation on mobile for performance */
+    }
+}
+
+/* Contact detail hover effects */
+.contact-panel .flex.items-start:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+.contact-panel .flex.items-start:hover .contact-icon {
+    background: rgba(255, 255, 255, 0.3) !important;
 }

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Contact Form | Webanise.me</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Enhanced Contact Form Styles */
+        .form-step {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .form-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .step-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .step-indicator.active {
+            background-color: #0d8b9c;
+            color: white;
+        }
+        
+        .step-indicator.completed {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .step-indicator.completed::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+        
+        .step-indicator.completed .step-number {
+            display: none;
+        }
+        
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background-color: #e5e7eb;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .step-line.completed {
+            background-color: #10b981;
+        }
+        
+        .service-card {
+            display: block;
+            padding: 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            border-color: #0d8b9c;
+            box-shadow: 0 4px 12px rgba(13, 139, 156, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .service-option input:checked + .service-card {
+            border-color: #0d8b9c;
+            background-color: rgba(13, 139, 156, 0.05);
+            box-shadow: 0 4px 12px rgba(13, 139, 156, 0.2);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0d8b9c, #0a3b5c);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(13, 139, 156, 0.25);
+        }
+        
+        .custom-radio input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .custom-radio label {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            background: white;
+        }
+        
+        .custom-radio input[type="radio"]:checked + label {
+            border-color: #0d8b9c;
+            background-color: rgba(13, 139, 156, 0.05);
+            box-shadow: 0 2px 8px rgba(13, 139, 156, 0.15);
+        }
+        
+        .custom-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .custom-checkbox label {
+            position: relative;
+            padding-left: 2rem;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .custom-checkbox label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.125rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + label:before {
+            background-color: #0d8b9c;
+            border-color: #0d8b9c;
+        }
+        
+        .custom-checkbox input[type="checkbox"]:checked + label:after {
+            content: '';
+            position: absolute;
+            left: 0.45rem;
+            top: 0.45rem;
+            width: 0.375rem;
+            height: 0.625rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .success-message {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .form-submitted .success-message {
+            display: block;
+        }
+        
+        .form-submitted form {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-icon:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0d8b9c, #10b981);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            width: 33.33%;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .service-card {
+                padding: 1rem;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .step-indicator {
+                width: 35px;
+                height: 35px;
+                font-size: 0.875rem;
+            }
+            
+            .step-line {
+                margin: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4 text-gray-800">Get Your Free Consultation</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ready to transform your business? Let's discuss your project and create a custom solution that drives real results.</p>
+                <div class="mt-6 flex flex-wrap justify-center items-center gap-4 text-sm text-gray-500">
+                    <div class="flex items-center">
+                        <i class="fas fa-clock text-primary mr-2"></i>
+                        <span>24-hour response</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-shield-alt text-primary mr-2"></i>
+                        <span>100% confidential</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-handshake text-primary mr-2"></i>
+                        <span>No obligation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Contact Information Panel -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 text-white h-full">
+                        <h3 class="text-2xl font-bold mb-6">Let's Start a Conversation</h3>
+                        <p class="text-blue-100 mb-8 leading-relaxed">We're here to help you succeed. Whether you need a new website, business automation, or industry-specific solutions, we'll create the perfect digital strategy for your business.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="contact-icon mr-4 mt-1">
+                                    <i class="fas fa-phone text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Phone</h4>
+                                    <p class="text-blue-100">+44 20 1234 5678</p>
+                                    <p class="text-sm text-blue-200">Mon-Fri: 9:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="contact-icon mr-4 mt-1">
+                                    <i class="fas fa-envelope text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Email</h4>
+                                    <a href="mailto:info@webanise.me" class="text-blue-100 hover:text-white transition-colors">info@webanise.me</a>
+                                    <p class="text-sm text-blue-200">We respond within 24 hours</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="contact-icon mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Location</h4>
+                                    <p class="text-blue-100">United Kingdom</p>
+                                    <p class="text-sm text-blue-200">Serving businesses nationwide</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t border-blue-400">
+                            <h4 class="font-semibold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="contact-icon hover:bg-white hover:text-primary transition-all duration-300" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="contact-icon hover:bg-white hover:text-primary transition-all duration-300" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.instagram.com/webanise.me?igsh=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" class="contact-icon hover:bg-white hover:text-primary transition-all duration-300" target="_blank" rel="noopener" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="contact-icon hover:bg-white hover:text-primary transition-all duration-300" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Panel -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <!-- Success Message (Initially Hidden) -->
+                        <div id="formSuccess" class="hidden success-message text-center py-16">
+                            <div class="mb-6 text-primary">
+                                <i class="fas fa-check-circle text-6xl"></i>
+                            </div>
+                            <h2 class="text-3xl font-bold text-secondary mb-4">Thank you for reaching out!</h2>
+                            <p class="text-xl text-gray-600 mb-8">We've received your inquiry and will be in touch within 24 hours.</p>
+                            <a href="index.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-secondary transition duration-300">Return to Homepage</a>
+                        </div>
+                        
+                        <!-- Form Progress -->
+                        <div class="mb-8">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center w-full">
+                                    <div class="step-indicator active" data-step="1">
+                                        <span class="step-number">1</span>
+                                    </div>
+                                    <div class="step-line"></div>
+                                    <div class="step-indicator" data-step="2">
+                                        <span class="step-number">2</span>
+                                    </div>
+                                    <div class="step-line"></div>
+                                    <div class="step-indicator" data-step="3">
+                                        <span class="step-number">3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                <span id="stepTitle">Step 1: Contact Information</span>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <form id="contactForm" action="https://formspree.io/f/mpwdodpp" method="POST" class="space-y-6">
+                            <!-- Step 1: Contact Information -->
+                            <div class="form-step active" data-step="1">
+                                <div class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <!-- Full Name -->
+                                        <div class="form-group">
+                                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Full Name <span class="text-red-500">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <input
+                                                    type="text"
+                                                    id="fullName"
+                                                    name="fullName"
+                                                    class="form-control w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                                    placeholder="Enter your full name"
+                                                    required
+                                                    aria-describedby="fullName-error"
+                                                >
+                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                    <i class="fas fa-user text-gray-400"></i>
+                                                </div>
+                                            </div>
+                                            <div id="fullName-error" class="validation-message hidden text-red-500 text-sm mt-1" role="alert"></div>
+                                        </div>
+                                        
+                                        <!-- Email Address -->
+                                        <div class="form-group">
+                                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Email Address <span class="text-red-500">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    name="email"
+                                                    class="form-control w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                                    placeholder="your@email.com"
+                                                    required
+                                                    aria-describedby="email-error"
+                                                >
+                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                    <i class="fas fa-envelope text-gray-400"></i>
+                                                </div>
+                                            </div>
+                                            <div id="email-error" class="validation-message hidden text-red-500 text-sm mt-1" role="alert"></div>
+                                        </div>
+                                        
+                                        <!-- Phone Number -->
+                                        <div class="form-group">
+                                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Phone Number
+                                            </label>
+                                            <div class="relative">
+                                                <input
+                                                    type="tel"
+                                                    id="phone"
+                                                    name="phone"
+                                                    class="form-control w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                                    placeholder="+44 123 456 7890"
+                                                    aria-describedby="phone-error"
+                                                >
+                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                    <i class="fas fa-phone text-gray-400"></i>
+                                                </div>
+                                            </div>
+                                            <div id="phone-error" class="validation-message hidden text-red-500 text-sm mt-1" role="alert"></div>
+                                        </div>
+                                        
+                                        <!-- Company Name -->
+                                        <div class="form-group">
+                                            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Company Name
+                                            </label>
+                                            <div class="relative">
+                                                <input
+                                                    type="text"
+                                                    id="company"
+                                                    name="company"
+                                                    class="form-control w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                                    placeholder="Your company name"
+                                                >
+                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                    <i class="fas fa-building text-gray-400"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Website URL -->
+                                    <div class="form-group">
+                                        <label for="website" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Current Website URL
+                                        </label>
+                                        <div class="relative">
+                                            <input
+                                                type="url"
+                                                id="website"
+                                                name="website"
+                                                class="form-control w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                                placeholder="https://yourwebsite.com"
+                                            >
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fas fa-globe text-gray-400"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1">Leave blank if you don't have a website yet</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end mt-8">
+                                    <button type="button" class="next-step-btn bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                                        Next Step
+                                        <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Service Selection -->
+                            <div class="form-step" data-step="2">
+                                <div class="space-y-6">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-gray-800 mb-4">What service are you interested in?</h3>
+                                        <p class="text-sm text-gray-600 mb-6">Select the service that best matches your needs <span class="text-red-500">*</span></p>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <!-- Website Design & Development -->
+                                            <div class="service-option">
+                                                <input
+                                                    type="radio"
+                                                    id="service-web-design"
+                                                    name="service"
+                                                    value="Website Design & Development"
+                                                    required
+                                                    class="sr-only"
+                                                >
+                                                <label for="service-web-design" class="service-card">
+                                                    <div class="service-icon">
+                                                        <i class="fas fa-laptop-code text-2xl"></i>
+                                                    </div>
+                                                    <h4 class="font-semibold text-gray-800 mb-2">Website Design & Development</h4>
+                                                    <p class="text-sm text-gray-600">Professional, responsive websites that convert visitors into customers</p>
+                                                </label>
+                                            </div>
+                                            
+                                            <!-- Business Automation Solutions -->
+                                            <div class="service-option">
+                                                <input
+                                                    type="radio"
+                                                    id="service-automation"
+                                                    name="service"
+                                                    value="Business Automation Solutions"
+                                                    class="sr-only"
+                                                >
+                                                <label for="service-automation" class="service-card">
+                                                    <div class="service-icon">
+                                                        <i class="fas fa-robot text-2xl"></i>
+                                                    </div>
+                                                    <h4 class="font-semibold text-gray-800 mb-2">Business Automation</h4>
+                                                    <p class="text-sm text-gray-600">Streamline operations with custom automation tools that save time</p>
+                                                </label>
+                                            </div>
+                                            
+                                            <!-- Industry-Specific Solutions -->
+                                            <div class="service-option">
+                                                <input
+                                                    type="radio"
+                                                    id="service-industry"
+                                                    name="service"
+                                                    value="Industry-Specific Digital Solution"
+                                                    class="sr-only"
+                                                >
+                                                <label for="service-industry" class="service-card">
+                                                    <div class="service-icon">
+                                                        <i class="fas fa-industry text-2xl"></i>
+                                                    </div>
+                                                    <h4 class="font-semibold text-gray-800 mb-2">Industry-Specific Solutions</h4>
+                                                    <p class="text-sm text-gray-600">Tailored digital solutions for your specific industry needs</p>
+                                                </label>
+                                            </div>
+                                            
+                                            <!-- Custom Projects -->
+                                            <div class="service-option">
+                                                <input
+                                                    type="radio"
+                                                    id="service-custom"
+                                                    name="service"
+                                                    value="Custom Automation Project"
+                                                    class="sr-only"
+                                                >
+                                                <label for="service-custom" class="service-card">
+                                                    <div class="service-icon">
+                                                        <i class="fas fa-cogs text-2xl"></i>
+                                                    </div>
+                                                    <h4 class="font-semibold text-gray-800 mb-2">Custom Projects</h4>
+                                                    <p class="text-sm text-gray-600">Bespoke solutions designed specifically for your business</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Industry Selection (Conditional) -->
+                                    <div id="industry-selection" class="hidden space-y-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                        <p class="text-sm font-medium text-gray-700">Please select your industry: <span class="text-red-500">*</span></p>
+                                        
+                                        <select
+                                            id="industry"
+                                            name="industry"
+                                            class="form-control w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                        >
+                                            <option value="" disabled selected>Select your industry</option>
+                                            <option value="Restaurant & Hospitality">Restaurant & Hospitality</option>
+                                            <option value="Professional Services">Professional Services</option>
+                                            <option value="Health & Wellness">Health & Wellness</option>
+                                            <option value="Retail & E-commerce">Retail & E-commerce</option>
+                                            <option value="Education & Training">Education & Training</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Existing Systems -->
+                                    <div class="space-y-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                        <p class="text-sm font-medium text-gray-700">Do you have existing systems? <span class="text-red-500">*</span></p>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="existing-yes"
+                                                    name="existing-systems"
+                                                    value="Yes, looking to improve existing systems"
+                                                    required
+                                                >
+                                                <label for="existing-yes" class="text-sm">
+                                                    <div class="flex items-center">
+                                                        <i class="fas fa-sync-alt text-primary mr-2"></i>
+                                                        <span>Yes, looking to improve</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="custom-radio">
+                                                <input
+                                                    type="radio"
+                                                    id="existing-no"
+                                                    name="existing-systems"
+                                                    value="No, starting fresh"
+                                                >
+                                                <label for="existing-no" class="text-sm">
+                                                    <div class="flex items-center">
+                                                        <i class="fas fa-plus-circle text-primary mr-2"></i>
+                                                        <span>No, starting fresh</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between mt-8">
+                                    <button type="button" class="prev-step-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-400 transition duration-300 flex items-center">
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        Previous
+                                    </button>
+                                    <button type="button" class="next-step-btn bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                                        Next Step
+                                        <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Project Details -->
+                            <div class="form-step" data-step="3">
+                                <div class="space-y-6">
+                                    <!-- Project Description -->
+                                    <div class="form-group">
+                                        <label for="project-details" class="block text-sm font-medium text-gray-700 mb-2">
+                                            Tell us about your project <span class="text-red-500">*</span>
+                                        </label>
+                                        <textarea
+                                            id="project-details"
+                                            name="project-details"
+                                            rows="4"
+                                            class="form-control w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                            placeholder="Please share details about your project, requirements, and any specific features you need..."
+                                            required
+                                            aria-describedby="project-details-error"
+                                        ></textarea>
+                                        <div id="project-details-error" class="validation-message hidden text-red-500 text-sm mt-1" role="alert"></div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <!-- Budget Range -->
+                                        <div class="form-group">
+                                            <label for="budget" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Budget Range <span class="text-red-500">*</span>
+                                            </label>
+                                            <select
+                                                id="budget"
+                                                name="budget"
+                                                class="form-control w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                                required
+                                                aria-describedby="budget-error"
+                                            >
+                                                <option value="" disabled selected>Select your budget range</option>
+                                                <option value="Under £1,000">Under £1,000</option>
+                                                <option value="£1,000 - £2,500">£1,000 - £2,500</option>
+                                                <option value="£2,500 - £5,000">£2,500 - £5,000</option>
+                                                <option value="£5,000+">£5,000+</option>
+                                                <option value="Not sure yet">Not sure yet</option>
+                                            </select>
+                                            <div id="budget-error" class="validation-message hidden text-red-500 text-sm mt-1" role="alert"></div>
+                                        </div>
+                                        
+                                        <!-- Timeline -->
+                                        <div class="form-group">
+                                            <label for="timeline" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Project Timeline
+                                            </label>
+                                            <select
+                                                id="timeline"
+                                                name="timeline"
+                                                class="form-control w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                            >
+                                                <option value="" disabled selected>When do you need this completed?</option>
+                                                <option value="ASAP">As soon as possible</option>
+                                                <option value="1-2 weeks">1-2 weeks</option>
+                                                <option value="1 month">Within 1 month</option>
+                                                <option value="2-3 months">2-3 months</option>
+                                                <option value="Flexible">I'm flexible</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- How did you hear about us -->
+                                    <div class="form-group">
+                                        <label for="source" class="block text-sm font-medium text-gray-700 mb-2">
+                                            How did you hear about us?
+                                        </label>
+                                        <select
+                                            id="source"
+                                            name="source"
+                                            class="form-control w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                        >
+                                            <option value="" disabled selected>Select an option</option>
+                                            <option value="Google Search">Google Search</option>
+                                            <option value="Social Media">Social Media</option>
+                                            <option value="Referral from friend/colleague">Referral from friend/colleague</option>
+                                            <option value="LinkedIn">LinkedIn</option>
+                                            <option value="Industry publication">Industry publication</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Consent & Submit Section -->
+                                    <div class="space-y-6 pt-6 border-t border-gray-200">
+                                        <div class="space-y-4">
+                                            <!-- Newsletter Subscription -->
+                                            <div class="custom-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    id="newsletter"
+                                                    name="newsletter"
+                                                    value="yes"
+                                                >
+                                                <label for="newsletter" class="text-sm text-gray-700">
+                                                    Subscribe to our newsletter for digital marketing tips and industry insights
+                                                </label>
+                                            </div>
+                                            
+                                            <!-- Privacy Policy Consent -->
+                                            <div class="custom-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    id="privacy-policy"
+                                                    name="privacy-policy"
+                                                    value="yes"
+                                                    required
+                                                >
+                                                <label for="privacy-policy" class="text-sm text-gray-700">
+                                                    I agree to the <a href="privacy-policy.html" class="text-primary hover:underline" target="_blank">privacy policy</a> and <a href="terms-of-service.html" class="text-primary hover:underline" target="_blank">terms of service</a> <span class="text-red-500">*</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- GDPR Compliance Text -->
+                                        <div class="text-sm text-gray-500 italic bg-gray-50 p-4 rounded-lg">
+                                            <i class="fas fa-shield-alt text-primary mr-2"></i>
+                                            By submitting this form, you consent to us collecting and processing your personal information for the purpose of responding to your inquiry. We respect your privacy and will never share your details with third parties.
+                                        </div>
+                                        
+                                        <!-- Social Proof -->
+                                        <div class="text-center text-sm text-gray-600 bg-green-50 p-4 rounded-lg">
+                                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                            Join 50+ UK SMEs who've transformed their business with our solutions
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between mt-8">
+                                    <button type="button" class="prev-step-btn bg-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-400 transition duration-300 flex items-center">
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        Previous
+                                    </button>
+                                    <button
+                                        id="submit-button"
+                                        type="submit"
+                                        class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-lg hover:from-secondary hover:to-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 flex items-center font-semibold"
+                                    >
+                                        <span>Send My Request</span>
+                                        <i class="fas fa-paper-plane ml-2"></i>
+                                        <div class="loading-spinner hidden ml-2 w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form elements
+            const form = document.getElementById('contactForm');
+            const formSteps = document.querySelectorAll('.form-step');
+            const stepIndicators = document.querySelectorAll('.step-indicator');
+            const stepLines = document.querySelectorAll('.step-line');
+            const progressFill = document.getElementById('progressFill');
+            const stepTitle = document.getElementById('stepTitle');
+            const nextButtons = document.querySelectorAll('.next-step-btn');
+            const prevButtons = document.querySelectorAll('.prev-step-btn');
+            const submitButton = document.getElementById('submit-button');
+            const loadingSpinner = submitButton.querySelector('.loading-spinner');
+            const formSuccess = document.getElementById('formSuccess');
+            
+            // Service and industry elements
+            const serviceRadios = document.querySelectorAll('input[name="service"]');
+            const industrySelection = document.getElementById('industry-selection');
+            const industrySelect = document.getElementById('industry');
+            
+            let currentStep = 1;
+            const totalSteps = 3;
+            
+            const stepTitles = {
+                1: 'Step 1: Contact Information',
+                2: 'Step 2: Service Selection',
+                3: 'Step 3: Project Details'
+            };
+            
+            // Initialize form
+            updateProgress();
+            
+            // Next step functionality
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (validateCurrentStep()) {
+                        if (currentStep < totalSteps) {
+                            currentStep++;
+                            showStep(currentStep);
+                            updateProgress();
+                        }
+                    }
+                });
+            });
+            
+            // Previous step functionality
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        showStep(currentStep);
+                        updateProgress();
+                    }
+                });
+            });
+            
+            // Show/hide industry selection based on service choice
+            serviceRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    checkIndustryVisibility();
+                });
+            });
+            
+            function checkIndustryVisibility() {
+                const isIndustrySpecific = document.getElementById('service-industry').checked;
+                if (isIndustrySpecific) {
+                    industrySelection.classList.remove('hidden');
+                    industrySelect.setAttribute('required', 'required');
+                } else {
+                    industrySelection.classList.add('hidden');
+                    industrySelect.removeAttribute('required');
+                    industrySelect.value = '';
+                }
+            }
+            
+            function showStep(step) {
+                // Hide all steps
+                formSteps.forEach(stepEl => {
+                    stepEl.classList.remove('active');
+                });
+                
+                // Show current step
+                const currentStepEl = document.querySelector(`[data-step="${step}"]`);
+                if (currentStepEl) {
+                    currentStepEl.classList.add('active');
+                }
+                
+                // Scroll to top of form
+                document.querySelector('.bg-white.rounded-2xl').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            function updateProgress() {
+                const progressPercentage = (currentStep / totalSteps) * 100;
+                progressFill.style.width = progressPercentage + '%';
+                stepTitle.textContent = stepTitles[currentStep];
+                
+                // Update step indicators
+                stepIndicators.forEach((indicator, index) => {
+                    const stepNumber = index + 1;
+                    indicator.classList.remove('active', 'completed');
+                    
+                    if (stepNumber < currentStep) {
+                        indicator.classList.add('completed');
+                    } else if (stepNumber === currentStep) {
+                        indicator.classList.add('active');
+                    }
+                });
+                
+                // Update step lines
+                stepLines.forEach((line, index) => {
+                    if (index + 1 < currentStep) {
+                        line.classList.add('completed');
+                    } else {
+                        line.classList.remove('completed');
+                    }
+                });
+            }
+            
+            function validateCurrentStep() {
+                const currentStepEl = document.querySelector(`[data-step="${currentStep}"]`);
+                const requiredFields = currentStepEl.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!validateField(field)) {
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            function validateField(field) {
+                const value = field.value.trim();
+                let isValid = true;
+                let message = '';
+                
+                // Clear previous validation
+                field.classList.remove('border-red-500');
+                const validationMessage = field.closest('.form-group')?.querySelector('.validation-message');
+                if (validationMessage) {
+                    validationMessage.classList.add('hidden');
+                }
+                
+                // Required field validation
+                if (field.required && !value) {
+                    isValid = false;
+                    message = 'This field is required';
+                }
+                // Email validation
+                else if (field.type === 'email' && value && !isValidEmail(value)) {
+                    isValid = false;
+                    message = 'Please enter a valid email address';
+                }
+                // Phone validation
+                else if (field.type === 'tel' && value && !/^[0-9+\-\s()]{7,20}$/.test(value)) {
+                    isValid = false;
+                    message = 'Please enter a valid phone number';
+                }
+                // Radio button validation
+                else if (field.type === 'radio' && field.required) {
+                    const radioGroup = document.querySelectorAll(`input[name="${field.name}"]`);
+                    const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+                    if (!isChecked) {
+                        isValid = false;
+                        message = 'Please select an option';
+                    }
+                }
+                
+                if (!isValid) {
+                    showFieldError(field, message);
+                }
+                
+                return isValid;
+            }
+            
+            function showFieldError(field, message) {
+                field.classList.add('border-red-500');
+                const validationMessage = field.closest('.form-group')?.querySelector('.validation-message');
+                if (validationMessage) {
+                    validationMessage.textContent = message;
+                    validationMessage.classList.remove('hidden');
+                }
+            }
+            
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() || this.required) {
+                        validateField(this);
+                    }
+                });
+                
+                input.addEventListener('input', function() {
+                    // Clear error state on input
+                    this.classList.remove('border-red-500');
+                    const validationMessage = this.closest('.form-group')?.querySelector('.validation-message');
+                    if (validationMessage) {
+                        validationMessage.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (!validateCurrentStep()) {
+                    return;
+                }
+                
+                // Show loading state
+                submitButton.disabled = true;
+                loadingSpinner.classList.remove('hidden');
+                submitButton.querySelector('span').textContent = 'Sending...';
+                
+                // Get form data
+                const formData = new FormData(form);
+                
+                // Submit to Formspree
+                fetch('https://formspree.io/f/mpwdodpp', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Show success message
+                        form.style.display = 'none';
+                        formSuccess.classList.remove('hidden');
+                        formSuccess.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Reset form
+                        form.reset();
+                        currentStep = 1;
+                        showStep(currentStep);
+                        updateProgress();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was a problem submitting your form. Please try again or contact us directly.');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitButton.disabled = false;
+                    loadingSpinner.classList.add('hidden');
+                    submitButton.querySelector('span').textContent = 'Send My Request';
+                });
+            });
+            
+            // Initialize industry visibility
+            checkIndustryVisibility();
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.classList.contains('next-step-btn')) {
+                    e.target.click();
+                }
+                if (e.key === 'Enter' && e.target.classList.contains('prev-step-btn')) {
+                    e.target.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
